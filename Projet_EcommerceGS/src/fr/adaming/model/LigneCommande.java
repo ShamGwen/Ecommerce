@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +26,8 @@ public class LigneCommande implements Serializable{
 	private double prix;
 	
 	//Transformation de l'association UML en Java
+	@ManyToOne
+	@JoinColumn(name="id_produit",referencedColumnName="id_pro")
 	private Produit produit;
 	@ManyToOne
 	@JoinColumn(name="id_commande",referencedColumnName="id_com")

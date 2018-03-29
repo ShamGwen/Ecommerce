@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="produits")
@@ -29,8 +30,9 @@ public class Produit implements Serializable{
 	//transformation uml en java
 	@ManyToOne
 	@JoinColumn(name="cat_id", referencedColumnName="id_cat")
-	
 	private Categorie categorie;
+	
+	@OneToMany(mappedBy="produit")
 	private List<LigneCommande> listeLigneCommande;
 	
 	
