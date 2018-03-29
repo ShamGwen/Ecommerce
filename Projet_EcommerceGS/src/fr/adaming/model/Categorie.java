@@ -83,13 +83,6 @@ public class Categorie implements Serializable {
 		this.description = description;
 	}
 
-	// toString
-	@Override
-	public String toString() {
-		return "Categorie [idCategorie=" + idCategorie + ", nomCategorie=" + nomCategorie + ", photo="
-				+ Arrays.toString(photo) + ", description=" + description + "]";
-	}
-
 	public List<Produit> getListeProduits() {
 		return listeProduits;
 	}
@@ -97,5 +90,13 @@ public class Categorie implements Serializable {
 	public void setListeProduits(List<Produit> listeProduits) {
 		this.listeProduits = listeProduits;
 	}
+
+	// toString
+	@Override
+	public String toString() {
+		return "Categorie [idCategorie=" + idCategorie + ", nomCategorie=" + nomCategorie + ", photo="
+				+ Arrays.toString(photo) + ", description=" + description + "]";
+	}
+
 
 }

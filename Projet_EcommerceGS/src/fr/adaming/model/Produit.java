@@ -3,6 +3,7 @@ package fr.adaming.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,14 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 @Entity
 @Table(name="produits")
-
 public class Produit implements Serializable{
-
+	// attributs
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	// attributs
+	@Column(name="id_prod")
 	private Long idProduit;
 	private String designation;
 	private String description;
@@ -137,6 +138,14 @@ public class Produit implements Serializable{
 
 	public void setListeLigneCommande(List<LigneCommande> listeLigneCommande) {
 		this.listeLigneCommande = listeLigneCommande;
+	}
+
+	//toString
+	@Override
+	public String toString() {
+		return "Produit [idProduit=" + idProduit + ", designation=" + designation + ", description=" + description
+				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + ", photo=" + photo
+				+ "]";
 	}
 
 }

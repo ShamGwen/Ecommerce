@@ -67,6 +67,22 @@ public class Commande implements Serializable{
 		this.dateCommande = dateCommande;
 	}
 	
+	public List<LigneCommande> getListeLC() {
+		return listeLC;
+	}
+
+	public void setListeLC(List<LigneCommande> listeLC) {
+		this.listeLC = listeLC;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	//Redefinition de la methode toString
 	@Override
 	public String toString() {
