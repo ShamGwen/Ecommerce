@@ -1,7 +1,22 @@
 package fr.adaming.model;
 
-public class Produit {
+import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name="produits")
+
+public class Produit implements Serializable{
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	// attributs
 	private Long idProduit;
 	private String designation;
@@ -10,7 +25,16 @@ public class Produit {
 	private int quantite;
 	private boolean selectionne;
 	private String photo;
-
+   
+	//transformation uml en java
+	@ManyToOne
+	@JoinColumn(name="cat_id", referencedColumnName="id_cat")
+	
+	private Categorie categorie;
+	private List<LigneCommande> listeLigneCommande;
+	
+	
+	
 	// declaration des constructeurs
 
 	public Produit() {
@@ -95,6 +119,22 @@ public class Produit {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public List<LigneCommande> getListeLigneCommande() {
+		return listeLigneCommande;
+	}
+
+	public void setListeLigneCommande(List<LigneCommande> listeLigneCommande) {
+		this.listeLigneCommande = listeLigneCommande;
 	}
 
 }

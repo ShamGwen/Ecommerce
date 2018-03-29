@@ -1,14 +1,34 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
-public class Categorie {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+@Entity
+@Table(name="categories")
+public class Categorie implements Serializable {
 
 	// attributs
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_cat")
 	private Long idCategorie;
 	private String nomCategorie;
 	private byte photo[];
 	private String description;
+	
+	//transformation uml en java 
+	@OneToMany(mappedBy="categorie")
+	private List<Produit> listeProduits;
+	
+	
 
 	// constructeur
 	public Categorie() {
@@ -68,6 +88,14 @@ public class Categorie {
 	public String toString() {
 		return "Categorie [idCategorie=" + idCategorie + ", nomCategorie=" + nomCategorie + ", photo="
 				+ Arrays.toString(photo) + ", description=" + description + "]";
+	}
+
+	public List<Produit> getListeProduits() {
+		return listeProduits;
+	}
+
+	public void setListeProduits(List<Produit> listeProduits) {
+		this.listeProduits = listeProduits;
 	}
 
 }
