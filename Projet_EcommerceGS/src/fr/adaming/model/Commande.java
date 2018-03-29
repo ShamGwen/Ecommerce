@@ -1,12 +1,34 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class Commande {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="commandes")
+public class Commande implements Serializable{
 
 	//Attributs
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_com")
 	private long idCommande;
 	private Date dateCommande;
+	
+	//transformation de l'association UML en Java
+	@OneToMany(mappedBy="commande",cascade=CascadeType.REMOVE,fetch=FetchType.LAZY)
+	private List<LigneCommande> listeLC;
+	private Client client;
 	
 	//Constructeurs
 	public Commande() {

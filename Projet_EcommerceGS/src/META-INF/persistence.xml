@@ -6,7 +6,8 @@
 	<jta-data-source>java:/ds_GS_EC1</jta-data-source>
 	
 	<!-- Liste les classes persistantes -->
-
+	<class>fr.adaming.model.LigneCommande</class>
+	<class>fr.adaming.model.Commande</class>
 	
 	<!-- Proprietes de Hibernate -->
 	<properties>

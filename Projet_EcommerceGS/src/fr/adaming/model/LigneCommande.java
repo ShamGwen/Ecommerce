@@ -1,14 +1,36 @@
 package fr.adaming.model;
 
-public class LigneCommande {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="lignesCommandes")
+public class LigneCommande implements Serializable{
 
 	
 	//Attributs
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_lc")
 	private int idLC;
 	private int quantite;
 	private double prix;
 	
-	//Constructeurs
+	//Transformation de l'association UML en Java
+	private Produit produit;
+	@ManyToOne
+	@JoinColumn(name="id_commande",referencedColumnName="id_com")
+	private Commande commande;
+	
+	//Constructeurs0
 	public LigneCommande() {
 		super();
 	}
