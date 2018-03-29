@@ -11,6 +11,7 @@
 	<class>fr.adaming.model.Produit</class>
 	<class>fr.adaming.model.Categorie</class>
 	<class>fr.adaming.model.Client</class>
+	<class>fr.adaming.model.Administrateur</class>
 	<!-- Proprietes de Hibernate -->
 	<properties>
 		<property name="hibernate.hbm2ddl.auto" value="update"/>

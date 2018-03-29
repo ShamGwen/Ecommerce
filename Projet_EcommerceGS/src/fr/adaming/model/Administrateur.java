@@ -1,9 +1,23 @@
 package fr.adaming.model;
 
-public class Administrateur {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="administrateurs")
+public class Administrateur implements Serializable{
 
 	
 	//Attributs
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_admin")
 	private int idAdmin;
 	private String mail;
 	private String mdp;
