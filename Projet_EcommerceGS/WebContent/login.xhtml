@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<title>Page login</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h1>Formulaire d'authentification</h1>
+		<p:panelGrid columns="2">
+         	Mail: <h:inputText value="#{adMB.admin.mail}" />
+			Password: <h:inputText value="#{adMB.admin.mdp}" />
+			<h:commandButton value="Connexion" action="#{adMB.seConnecter}" />
+
+		</p:panelGrid>
+	</h:form>
+	<h:messages style="color:red" />
+
+</h:body>
+</html>
