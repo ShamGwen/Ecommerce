@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,6 +30,8 @@ public class Commande implements Serializable{
 	//transformation de l'association UML en Java
 	@OneToMany(mappedBy="commande",cascade=CascadeType.REMOVE,fetch=FetchType.LAZY)
 	private List<LigneCommande> listeLC;
+	@ManyToOne
+	@JoinColumn(name="id_client", referencedColumnName="id_cl")
 	private Client client;
 	
 	//Constructeurs
