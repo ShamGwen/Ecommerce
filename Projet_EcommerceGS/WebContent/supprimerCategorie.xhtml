@@ -6,10 +6,9 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
-	<title>Page ajouterCategorie</title>
+	<title>Page supprimerCategorie</title>
 </h:head>
 <h:body>
-
 	<h:form>
 		<p:breadCrumb>
 			<p:menuitem value="AccueilAdmin" url="accueilAdmin.xhtml" />
@@ -19,16 +18,16 @@
 		</p:breadCrumb>
 	</h:form>
 
-	<h:form enctype="multipart/form-data">
+	<h:form>
 
 		<h:panelGrid columns="2">
-			Nom de la categorie: <h:inputText
-				value="#{catMB.categorie.nomCategorie}" />
-			Description: <h:inputText value="#{catMB.categorie.description}" />
-			Image: <p:fileUpload value="#{catMB.uf}" mode="simple" skinSimple="true"/>
-			<h:commandButton value="Ajouter" action="#{catMB.ajouterCategorie}" />
+			ID de la categorie à supprimer: <h:inputText
+				value="#{catMB.categorie.idCategorie}" />
+			<h:commandButton value="Supprimer" action="#{catMB.supprimerCategorie}" />
 		</h:panelGrid>
 	</h:form>
+
+
 
 
 

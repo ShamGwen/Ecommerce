@@ -12,7 +12,7 @@ public interface ICategorieDao {
 	
 	public Categorie updateCategorieDao(Categorie cat);
 	
-	public Categorie deleteCategorieDao(Categorie cat);
+	public int deleteCategorieDao(Categorie cat);
 	
 	public Categorie getCategorieById(Categorie cat);
 	

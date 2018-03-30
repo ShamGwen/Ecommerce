@@ -10,60 +10,33 @@
 </h:head>
 <h:body>
 	<h:form>
-		<p:dataTable id="cat" var="cat" value="#{catMB.listeCat}" editable="true" style="margin-bottom:20px">
-			<f:facet name="header">Liste des categories</f:facet>
-
-			<p:ajax event="rowEdit" listener="#{catMB.modifierCategorie}"
-				 />
-			<p:ajax event="rowEditCancel" listener="#{catMB.modifierCategorie}"
-				 />
-
+		<p:dataTable var="cat" value="#{catMB.listeCat}">
+		<f:facet name="header">Liste des categories</f:facet>
 			<p:column headerText="Id">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{cat.idCategorie}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText rendered="false" value="#{cat.idCategorie}"
-							style="width:100%" label="Nom de la categorie" />
-					</f:facet>
-				</p:cellEditor>
+				<h:outputText value="#{cat.idCategorie}" />
 			</p:column>
 
 			<p:column headerText="Nom">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{cat.nomCategorie}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{cat.nomCategorie}"
-							style="width:100%" label="Nom de la categorie" />
-					</f:facet>
-				</p:cellEditor>
+				<h:outputText value="#{cat.nomCategorie}" />
 			</p:column>
 
 			<p:column headerText="Description">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{cat.description}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{cat.description}"
-							style="width:100%" label="Description de la categorie" />
-					</f:facet>
-				</p:cellEditor>
+				<h:outputText value="#{cat.description}" />
 			</p:column>
 
-			<p:column style="width:32px">
-				<p:rowEditor />
+			<p:column headerText="Photo de categorie">
+				<h:graphicImage value="#{cat.image}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
-	
-	
-	<h:form>
-		<h:button value="Ajouter Categorie" outcome="ajouterCategorie.xhtml" />
 
+
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:button value="Ajouter Categorie" outcome="ajouterCategorie.xhtml" />
+			<h:button value="Supprimer Categorie"
+				outcome="supprimerCategorie.xhtml" />
+		</h:panelGrid>
 	</h:form>
 
 </h:body>

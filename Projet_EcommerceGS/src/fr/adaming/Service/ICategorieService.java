@@ -15,7 +15,7 @@ public interface ICategorieService {
 
 	public Categorie updateCategorieService(Categorie cat);
 
-	public Categorie deleteCategorieService(Categorie cat);
+	public int deleteCategorieService(Categorie cat);
 
 	public Categorie getCategorieByIdService(Categorie cat);
 }

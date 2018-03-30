@@ -35,8 +35,8 @@ public class CategorieServiceImpl implements ICategorieService{
 	}
 
 	@Override
-	public Categorie deleteCategorieService(Categorie cat) {
-		
+	public int deleteCategorieService(Categorie cat) {
+				
 		return catDao.deleteCategorieDao(cat);
 	}
 

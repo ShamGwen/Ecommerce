@@ -8,22 +8,28 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.model.UploadedFile;
+import org.primefaces.model.UploadedFileWrapper;
 
 import fr.adaming.Service.ICategorieService;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
 
 @ManagedBean(name = "catMB")
+@RequestScoped
 public class CategorieMB implements Serializable {
 
 	// attributs
 	private Categorie categorie;
 	private HttpSession maSession;
 	private List<Categorie> listeCat;
+	private UploadedFile uf;
+	
 
 	
 	//transformation de l'association UML en Java
@@ -33,6 +39,7 @@ public class CategorieMB implements Serializable {
 	// Constructeur vide
 	public CategorieMB() {
 		this.categorie = new Categorie();
+		
 	}
 
 	@PostConstruct
@@ -62,14 +69,24 @@ public class CategorieMB implements Serializable {
 		this.listeCat = listeCat;
 	}
 
-	// Methodes metiers
+	public UploadedFile getUf() {
+		return uf;
+	}
 
+	public void setUf(UploadedFile uf) {
+		this.uf = uf;
+	}
+
+	// Methodes metiers
 	public String afficherImage(){
 		//File fnew = new File()
 		return null;
 	}
 	
 	public String ajouterCategorie(){
+		//ajouter la photo dans l'objet a ajouter
+		categorie.setPhoto(this.uf.getContents());
+		
 		Categorie catOut = catServ.addCategorieService(categorie);
 
 		if (catOut.getIdCategorie() != 0) {
@@ -91,5 +108,18 @@ public class CategorieMB implements Serializable {
 		List<Categorie> listeOut = catServ.getAllCategoriesService();
 		maSession.setAttribute("listeCategorie", listeOut);
 		
+	}
+	
+	public String supprimerCategorie(){
+		int verif = catServ.deleteCategorieService(categorie);
+		if(verif != 0){
+			List<Categorie> liste = catServ.getAllCategoriesService();
+			this.listeCat = liste;
+			return "accueilCategorie";
+		}
+		else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La catégorie n'a pas été supprimée!!"));
+			return "supprimerCategorie";
+		}
 	}
 }

@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.commons.codec.binary.Base64;
+
 import fr.adaming.model.Categorie;
 
 @Stateless
@@ -24,6 +26,11 @@ public class CategorieDaoImpl implements ICategorieDao {
 		Query query = em.createQuery(req);
 		// recuperation du resultat
 		List<Categorie> listeOut = query.getResultList();
+		//chargement des photos 
+		for(Categorie cat: listeOut){
+			cat.setImage("data:image/png;base64,"+Base64.encodeBase64String(cat.getPhoto()));
+		}
+		
 		return listeOut;
 		
 	}
@@ -48,10 +55,11 @@ public class CategorieDaoImpl implements ICategorieDao {
 
 
 	@Override
-	public Categorie deleteCategorieDao(Categorie cat) {
-		long id = cat.getIdCategorie();
-		em.remove(cat);
-		return em.find(Categorie.class, id);
+	public int deleteCategorieDao(Categorie cat) {
+		String req = "DELETE FROM Categorie cat WHERE cat.idCategorie=:pId";
+		Query q = em.createQuery(req);
+		q.setParameter("pId", cat.getIdCategorie());
+		return q.executeUpdate();
 	}
 
 
