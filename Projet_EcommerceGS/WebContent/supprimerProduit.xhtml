@@ -9,9 +9,17 @@ xmlns:p="http://primefaces.org/ui">
 <title>Page accueil admin</title>
 </h:head>
 <h:body>
-je suis dans la accueil admin
 
 
+
+<h:form>
+
+		<h:panelGrid columns="2">
+			ID du produit à supprimer: <h:inputText
+				value="#{prodMB.produit.idProduit}" />
+			<h:commandButton value="Supprimer" action="#{prodMB.deleteProduit}" />
+		</h:panelGrid>
+	</h:form>
 
 
 

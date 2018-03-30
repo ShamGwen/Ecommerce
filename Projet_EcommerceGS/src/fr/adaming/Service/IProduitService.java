@@ -16,13 +16,11 @@ public interface IProduitService {
 
 	public Produit ajouterProduitService(Produit prod, Categorie cat);
 
-	public Produit updateProduitService(Produit prod);
+	public int deleteProduitService(Produit prod);
 
-	public Produit deleteProduitService(Produit prod, Categorie cat);
+	public Produit rechercherProduitService(Produit prod);
 
-	public Produit rechercherProduitService(Produit prod, Categorie cat);
-
-	Produit updateProduitService(Produit prod, Categorie cat);
+	public Produit updateProduitService(Produit prod,Categorie cat);
 
 	public List<Produit> getAllProduitsService();
 

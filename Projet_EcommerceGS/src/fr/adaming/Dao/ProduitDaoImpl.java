@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.commons.codec.binary.Base64;
+
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 
@@ -25,7 +27,12 @@ public class ProduitDaoImpl implements IProduitDao {
 		query1.setParameter("pId", cat.getIdCategorie());
 
 		// envoyer la requte et recup la resultat
-		return query1.getResultList();
+		List<Produit> listeOut = query1.getResultList();
+		for (Produit prod : listeOut) {
+			prod.setImage("data:image/png;base64," + Base64.encodeBase64String(prod.getPhoto()));
+
+		}
+		return listeOut;
 
 	}
 
@@ -43,16 +50,18 @@ public class ProduitDaoImpl implements IProduitDao {
 		prodOut.setPrix(prod.getPrix());
 		prodOut.setPhoto(prod.getPhoto());
 		prodOut.setQuantite(prod.getQuantite());
-	    
+		prodOut.setSelectionne(prod.isSelectionne());
+
 		return prodOut;
 	}
 
 	@Override
-	public Produit deleteProduitDao(Produit prod) {
+	public int deleteProduitDao(Produit prod) {
 
-		Long id = prod.getIdProduit();
-		em.remove(prod);
-		return em.find(Produit.class, id);
+		String req = "DELETE from Produit prod WHERE prod.idProduit=:pId";
+		Query q = em.createQuery(req);
+		q.setParameter("pId", prod.getIdProduit());
+		return q.executeUpdate();
 	}
 
 	@Override
@@ -64,13 +73,19 @@ public class ProduitDaoImpl implements IProduitDao {
 	@Override
 	public List<Produit> getAllProduitsDao() {
 		// requete JPQL
-				String req = "SELECT prod FROM Produit prod";
-				// creation d'un objet de type query pour envoyer la requete de type JPQL
-				Query query = em.createQuery(req);
-				// recuperation du resultat
-				List<Produit> listeOut = query.getResultList();
-				return listeOut;
-	
+		String req = "SELECT prod FROM Produit prod";
+		// creation d'un objet de type query pour envoyer la requete de type
+		// JPQL
+		Query query = em.createQuery(req);
+		// recuperation du resultat
+		List<Produit> listeOut = query.getResultList();
+		// chargement de la photo
+		for (Produit prod : listeOut) {
+			prod.setImage("data:image/png;base64," + Base64.encodeBase64String(prod.getPhoto()));
+
+		}
+		return listeOut;
+
 	}
 
 }

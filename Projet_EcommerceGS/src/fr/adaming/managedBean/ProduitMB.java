@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.model.UploadedFile;
 
 import fr.adaming.Service.IProduitService;
 import fr.adaming.model.Categorie;
@@ -19,6 +20,7 @@ import fr.adaming.model.Client;
 import fr.adaming.model.Produit;
 
 @ManagedBean(name = "prodMB")
+@RequestScoped
 public class ProduitMB implements Serializable {
 	// transformation uml en java
 	@EJB
@@ -30,37 +32,24 @@ public class ProduitMB implements Serializable {
 	private HttpSession maSession;
 	private List<Produit> listeProduits;
 	private Boolean indice;
+	private UploadedFile uf;
 
 	// constructeur vide
 	public ProduitMB() {
 		this.produit = new Produit();
+		this.categorie = new Categorie();
 		this.indice = false;
 	}
 
 	@PostConstruct
 	public void init() {
-		this.categorie = (Categorie) maSession.getAttribute("categorieSession");
+		//this.categorie = (Categorie) maSession.getAttribute("categorieSession");
 		this.maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		this.listeProduits = prodService.getAllProduitsService(this.categorie);
+		this.listeProduits = prodService.getAllProduitsService();
 
 	}
 
-	public ProduitMB(IProduitService prodService, Produit produit, Categorie categorie, HttpSession maSession) {
-		super();
-		this.prodService = prodService;
-		this.produit = produit;
-		this.categorie = categorie;
-		this.maSession = maSession;
-	}
-
-	public IProduitService getProdService() {
-		return prodService;
-	}
-
-	public void setProdService(IProduitService prodService) {
-		this.prodService = prodService;
-	}
-
+	// get set
 	public Produit getProduit() {
 		return produit;
 	}
@@ -75,14 +64,6 @@ public class ProduitMB implements Serializable {
 
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
-	}
-
-	public HttpSession getMaSession() {
-		return maSession;
-	}
-
-	public void setMaSession(HttpSession maSession) {
-		this.maSession = maSession;
 	}
 
 	public List<Produit> getListeProduits() {
@@ -101,17 +82,25 @@ public class ProduitMB implements Serializable {
 		this.indice = indice;
 	}
 
+	public UploadedFile getUf() {
+		return uf;
+	}
+
+	public void setUf(UploadedFile uf) {
+		this.uf = uf;
+	}
+
 	// methodes metier
 	public String ajouterProduit() {
-
+		produit.setPhoto(this.uf.getContents());
 		Produit prodAjout = prodService.ajouterProduitService(this.produit, this.categorie);
 		if (prodAjout.getIdProduit() != 0) {
 
 			// recuperer la liste de clients
-			List<Produit> liste = prodService.getAllProduitsService(this.categorie);
+			List<Produit> liste = prodService.getAllProduitsService();
 
-			// metre a jour la liste dans la session
-			maSession.setAttribute("listeProduits", liste);
+			// metre a jour la liste dans la liste
+			this.listeProduits=liste;
 			return "accueilProduit";
 		} else {
 
@@ -122,59 +111,45 @@ public class ProduitMB implements Serializable {
 		}
 	}
 
-	//public String modifierproduit() {
+	
 
-		//Produit prodModif = prodService.updateProduitService(this.produit, this.categorie);
-		//if (prodModif.getIdProduit() != 0) {
+	public String deleteProduit() {
+		int verif = prodService.deleteProduitService(this.produit);
+		if (verif !=0) {
 			// recuperer la liste de clients
-			//List<Produit> liste = prodService.getAllProduitsService(this.categorie);
+			List<Produit> liste = prodService.getAllProduitsService();
 
 			// mettre a jour la lisste dans la session
-			//maSession.setAttribute("listeProduits", liste);
-			//return "accueilProduit";
-		//} else {
-			// le messag een cas dechec
-			//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("laclient n'est pas modifier"));
-			//return "modifierProduit";
-		//}
-	//}
-
-	public String deleteClient() {
-		Produit proDel = prodService.deleteProduitService(this.produit, this.categorie);
-		if (proDel != null) {
-			// recuperer la liste de clients
-			List<Produit> liste = prodService.getAllProduitsService(this.categorie);
-
-			// mettre a jour la lisste dans la session
-			maSession.setAttribute("listeProduits", liste);
+			this.listeProduits=liste;
 			return "accueilProduit";
 		} else {
 			// le messag een cas dechec
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("le client est pas supprimer"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("le produit n'est pas supprimé"));
 			return "deleteProduit";
 		}
 	}
 
-	public String findProduit() {
-		try {
-			this.produit = prodService.rechercherProduitService(this.produit, this.categorie);
-			this.indice = true;
+//	public String findProduit() {
+//		try {
+//			this.produit = prodService.rechercherProduitService(this.produit, this.categorie);
+//			this.indice = true;
+//
+//		} catch (Exception ex) {
+//
+//			// le message en cas dechec
+//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("le produit chercher n'exist pas "));
+//			this.indice = false;
+//
+//		}
+//		return "rechercherProduit";
+//	}
+//
+//	public void modifierProduit(RowEditEvent event) {
+//
+//		Produit prodModif = prodService.updateProduitService((Produit) event.getObject());
+//		List<Produit> liste = prodService.getAllProduitsService(this.categorie);
+//		maSession.setAttribute("listeProduits", liste);
+//
+//	}
 
-		} catch (Exception ex) {
-
-			// le message en cas dechec
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("le produit chercher n'exist pas "));
-			this.indice = false;
-
-		}
-		return "rechercherProduit";
-	}
-
-	public void modifierProduit(RowEditEvent event) {
-
-		Produit prodModif = prodService.updateProduitService((Produit) event.getObject());
-		List<Produit> liste = prodService.getAllProduitsService(this.categorie);
-		maSession.setAttribute("listeProduits", liste);
-
-	}
 }

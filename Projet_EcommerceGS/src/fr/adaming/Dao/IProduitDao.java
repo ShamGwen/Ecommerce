@@ -12,13 +12,13 @@ import fr.adaming.model.Produit;
 @Local
 public interface IProduitDao {
 
-	List<Produit> getAllProduitsDao(Categorie cat);
+	public List<Produit> getAllProduitsDao(Categorie cat);
 
 	public Produit ajouterProduitDao(Produit prod);
 
 	public Produit updateProduitDao(Produit prod);
 
-	public Produit deleteProduitDao(Produit prod);
+	public int deleteProduitDao(Produit prod);
 
 	public Produit rechercherProduitDao(Produit prod);
 

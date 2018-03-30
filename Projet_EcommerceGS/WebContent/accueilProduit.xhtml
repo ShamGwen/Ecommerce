@@ -10,98 +10,40 @@
 </h:head>
 <h:body>
 	<h:form>
-		<p:dataTable id="prod" var="prod" value="#{prodMB.listeProduits}"
-			editable="true" style="margin-bottom:20px">
+		<p:dataTable var="prod" value="#{prodMB.listeProduits}">
 			<f:facet name="header">Liste des produits</f:facet>
-
-			<p:ajax event="rowEdit" listener="#{prodMB.modifierProduit}" />
-			<p:ajax event="rowEditCancel" listener="#{prodMB.modifierProduit}" />
-
 			<p:column headerText="Id">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{prod.idProduit}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText rendered="false" value="#{prod.idProduit}"
-							style="width:100%" label="Nom de la categorie" />
-					</f:facet>
-				</p:cellEditor>
+				<h:outputText value="#{prod.idProduit}" />
 			</p:column>
 
 			<p:column headerText="Designation">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{prod.designation}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{prod.designation}" style="width:100%"
-							label="Designation e la produit" />
-					</f:facet>
-				</p:cellEditor>
+				<h:outputText value="#{prod.designation}" />
+			</p:column>
+
+			<p:column headerText="Description">
+				<h:outputText value="#{prod.description}" />
+			</p:column>
+			<p:column headerText="Prix">
+				<h:outputText value="#{prod.prix}" />
 			</p:column>
 
 			<p:column headerText="Quantite">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{prod.quantite}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{prod.quantite}" style="width:100%"
-							label="Quantite de la produit" />
-					</f:facet>
-				</p:cellEditor>
+				<h:outputText value="#{prod.quantite}" />
 			</p:column>
-
-			<p:column headerText="Selectionne">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{prod.selectionne}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{prod.selectionne}" style="width:100%"
-							label="Selectionne de la produit" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-
-
-
-
-			<p:column headerText="Description">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{prod.description}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{prod.description}" style="width:100%"
-							label="Description de la produit" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-
-
-			<p:column headerText="Prix">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{prod.prix}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{prod.prix}" style="width:100%"
-							label="Prix de la produit" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-
-			<p:column style="width:32px">
-				<p:rowEditor />
+			
+			<p:column headerText="Photo du produit">
+				<h:graphicImage value="#{prod.image}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
 
-	<h:form>
-		<h:button value="Ajouter Produit" outcome="ajouterCategorie.xhtml" />
 
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:button value="Ajouter Produit" outcome="ajouterProduit.xhtml" />
+			<h:button value="Supprimer Produit"
+				outcome="supprimerProduit.xhtml" />
+		</h:panelGrid>
 	</h:form>
 
 
