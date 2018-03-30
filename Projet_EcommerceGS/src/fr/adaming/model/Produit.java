@@ -1,6 +1,7 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,43 +10,48 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name="produits")
-public class Produit implements Serializable{
+@Table(name = "produits")
+public class Produit implements Serializable {
 	// attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_prod")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_prod")
 	private Long idProduit;
 	private String designation;
 	private String description;
-	private double prix=0;
-	private int quantite=0;
-	private String selectionne;
-	private byte[] photo;
-   
-	//transformation uml en java
-	@ManyToOne
-	@JoinColumn(name="cat_id", referencedColumnName="id_cat")
-	private Categorie categorie;
-	
-	@OneToMany(mappedBy="produit")
-	private List<LigneCommande> listeLigneCommande;
-	
-	
-	
-	// declaration des constructeurs
+	private double prix;
+	private int quantite;
+	@Column(columnDefinition = "TINYINT(1)")
+	private boolean selectionne;
 
+	@Lob
+	private byte[] photo;
+
+	@Transient
+	private String image;
+
+	// transformation uml en java
+	@ManyToOne
+	@JoinColumn(name = "cat_id", referencedColumnName = "id_cat")
+	private Categorie categorie;
+
+	@OneToMany(mappedBy = "produit")
+	private List<LigneCommande> listeLigneCommande;
+
+	// declaration des constructeurs
 	public Produit() {
 		super();
 	}
 
-	public Produit(String designation, String description, double prix, int quantite, String selectionne,
-			byte[] photo) {
+	public Produit(String designation, String description, double prix, int quantite, boolean selectionne, byte[] photo,
+			Categorie categorie, List<LigneCommande> listeLigneCommande) {
 		super();
 		this.designation = designation;
 		this.description = description;
@@ -53,10 +59,12 @@ public class Produit implements Serializable{
 		this.quantite = quantite;
 		this.selectionne = selectionne;
 		this.photo = photo;
+		this.categorie = categorie;
+		this.listeLigneCommande = listeLigneCommande;
 	}
 
 	public Produit(Long idProduit, String designation, String description, double prix, int quantite,
-			String selectionne, byte[] photo) {
+			boolean selectionne, byte[] photo, Categorie categorie, List<LigneCommande> listeLigneCommande) {
 		super();
 		this.idProduit = idProduit;
 		this.designation = designation;
@@ -65,9 +73,10 @@ public class Produit implements Serializable{
 		this.quantite = quantite;
 		this.selectionne = selectionne;
 		this.photo = photo;
+		this.categorie = categorie;
+		this.listeLigneCommande = listeLigneCommande;
 	}
 
-	// getters et setters
 	public Long getIdProduit() {
 		return idProduit;
 	}
@@ -108,11 +117,11 @@ public class Produit implements Serializable{
 		this.quantite = quantite;
 	}
 
-	public String isSelectionne() {
+	public boolean isSelectionne() {
 		return selectionne;
 	}
 
-	public void setSelectionne(String selectionne) {
+	public void setSelectionne(boolean selectionne) {
 		this.selectionne = selectionne;
 	}
 
@@ -140,12 +149,20 @@ public class Produit implements Serializable{
 		this.listeLigneCommande = listeLigneCommande;
 	}
 
-	//toString
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
 		return "Produit [idProduit=" + idProduit + ", designation=" + designation + ", description=" + description
-				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + ", photo=" + photo
+				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + ", photo="
+				+ Arrays.toString(photo) + ", categorie=" + categorie + ", listeLigneCommande=" + listeLigneCommande
 				+ "]";
-	}
 
+	}
 }
