@@ -66,19 +66,19 @@ public class CategorieMB implements Serializable {
 		return null;
 	}
 	
-//	public String ajouterCategorie(){
-//		Client clAjout = clientService.addClientService(client, agent);
-//		Categorie catOut = catServ.a
-//
-//		if (clAjout.getId() != 0) {
-//			// recuperer la nouvelle liste
-//			List<Client> liste = clientService.getAllClientsService(this.agent);
-//			// mettre a jour dans la session
-//			this.maSession.setAttribute("listeClients", liste);
-//			return "accueil";
-//		} else {
-//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Le client n'a pas été ajouté!!"));
-//			return "ajouterClient";
-//		}
-//	}
+	public String ajouterCategorie(){
+		Categorie catOut = catServ.addCategorieService(categorie);
+
+		if (catOut.getIdCategorie() != 0) {
+			// recuperer la nouvelle liste
+			List<Categorie> liste = catServ.getAllCategoriesService();
+			// mettre a jour
+			this.listeCat = liste;
+			
+			return "accueilAdmin";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La categorie n'a pas été ajoutée!!"));
+			return "ajouterCategorie";
+		}
+	}
 }
