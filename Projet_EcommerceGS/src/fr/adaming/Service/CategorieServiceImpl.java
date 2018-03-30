@@ -27,4 +27,23 @@ public class CategorieServiceImpl implements ICategorieService{
 		return catDao.addCategorieDao(cat);
 	}
 
+	@Override
+	public Categorie updateCategorieService(Categorie cat) {
+		
+		
+		return catDao.updateCategorieDao(cat);
+	}
+
+	@Override
+	public Categorie deleteCategorieService(Categorie cat) {
+		
+		return catDao.deleteCategorieDao(cat);
+	}
+
+	@Override
+	public Categorie getCategorieByIdService(Categorie cat) {
+		
+		return catDao.getCategorieById(cat);
+	}
+
 }

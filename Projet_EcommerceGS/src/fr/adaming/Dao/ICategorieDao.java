@@ -10,4 +10,10 @@ public interface ICategorieDao {
 	
 	public Categorie addCategorieDao(Categorie cat);
 	
+	public Categorie updateCategorieDao(Categorie cat);
+	
+	public Categorie deleteCategorieDao(Categorie cat);
+	
+	public Categorie getCategorieById(Categorie cat);
+	
 }

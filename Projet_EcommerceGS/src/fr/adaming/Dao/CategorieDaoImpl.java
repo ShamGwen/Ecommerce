@@ -36,6 +36,32 @@ public class CategorieDaoImpl implements ICategorieDao {
 	}
 
 
+	@Override
+	public Categorie updateCategorieDao(Categorie cat) {
+		Categorie catOut = em.find(Categorie.class, cat.getIdCategorie());
+		catOut.setNomCategorie(cat.getNomCategorie());
+		catOut.setDescription(cat.getDescription());
+		catOut.setPhoto(cat.getPhoto());
+		em.merge(catOut);
+		return catOut;
+	}
+
+
+	@Override
+	public Categorie deleteCategorieDao(Categorie cat) {
+		long id = cat.getIdCategorie();
+		em.remove(cat);
+		return em.find(Categorie.class, id);
+	}
+
+
+	@Override
+	public Categorie getCategorieById(Categorie cat) {
+		
+		return em.find(Categorie.class, cat.getIdCategorie());
+	}
+
+
 	
 
 }

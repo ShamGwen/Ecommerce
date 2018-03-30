@@ -11,6 +11,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.event.RowEditEvent;
+
 import fr.adaming.Service.ICategorieService;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
@@ -37,8 +39,9 @@ public class CategorieMB implements Serializable {
 	public void init() {
 		//recuperer la liste des categories
 		this.listeCat = catServ.getAllCategoriesService();
-		
+		maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		//ajouter la liste des categories dans la session
+		maSession.setAttribute("listeCategorie", listeCat);
 		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listeCat", this.listeCat);
 	}
 
@@ -75,10 +78,18 @@ public class CategorieMB implements Serializable {
 			// mettre a jour
 			this.listeCat = liste;
 			
-			return "accueilAdmin";
+			return "accueilCategorie";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La categorie n'a pas été ajoutée!!"));
 			return "ajouterCategorie";
 		}
+	}
+	
+	public void modifierCategorie(RowEditEvent event){
+		
+		catServ.updateCategorieService((Categorie) event.getObject());
+		List<Categorie> listeOut = catServ.getAllCategoriesService();
+		maSession.setAttribute("listeCategorie", listeOut);
+		
 	}
 }

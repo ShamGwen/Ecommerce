@@ -19,8 +19,15 @@
 		</p:breadCrumb>
 	</h:form>
 
+	<h:form>
 
-
+		<h:panelGrid columns="2">
+			Nom de la categorie: <h:inputText
+				value="#{catMB.categorie.nomCategorie}" />
+			Description: <h:inputText value="#{catMB.categorie.description}" />
+			<h:commandButton value="Ajouter" action="#{catMB.ajouterCategorie}" />
+		</h:panelGrid>
+	</h:form>
 
 
 
