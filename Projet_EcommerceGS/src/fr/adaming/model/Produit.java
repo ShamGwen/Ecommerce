@@ -23,10 +23,10 @@ public class Produit implements Serializable{
 	private Long idProduit;
 	private String designation;
 	private String description;
-	private double prix;
-	private int quantite;
-	private boolean selectionne;
-	private String photo;
+	private double prix=0;
+	private int quantite=0;
+	private String selectionne;
+	private byte[] photo;
    
 	//transformation uml en java
 	@ManyToOne
@@ -44,8 +44,8 @@ public class Produit implements Serializable{
 		super();
 	}
 
-	public Produit(String designation, String description, double prix, int quantite, boolean selectionne,
-			String photo) {
+	public Produit(String designation, String description, double prix, int quantite, String selectionne,
+			byte[] photo) {
 		super();
 		this.designation = designation;
 		this.description = description;
@@ -56,7 +56,7 @@ public class Produit implements Serializable{
 	}
 
 	public Produit(Long idProduit, String designation, String description, double prix, int quantite,
-			boolean selectionne, String photo) {
+			String selectionne, byte[] photo) {
 		super();
 		this.idProduit = idProduit;
 		this.designation = designation;
@@ -108,19 +108,19 @@ public class Produit implements Serializable{
 		this.quantite = quantite;
 	}
 
-	public boolean isSelectionne() {
+	public String isSelectionne() {
 		return selectionne;
 	}
 
-	public void setSelectionne(boolean selectionne) {
+	public void setSelectionne(String selectionne) {
 		this.selectionne = selectionne;
 	}
 
-	public String getPhoto() {
+	public byte[] getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(String photo) {
+	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
 
