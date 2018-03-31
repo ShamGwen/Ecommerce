@@ -16,7 +16,7 @@ public interface IProduitDao {
 
 	public Produit ajouterProduitDao(Produit prod);
 
-	public Produit updateProduitDao(Produit prod);
+	public int updateProduitDao(Produit prod);
 
 	public int deleteProduitDao(Produit prod);
 

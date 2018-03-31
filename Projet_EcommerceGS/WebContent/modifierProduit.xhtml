@@ -9,7 +9,36 @@ xmlns:p="http://primefaces.org/ui">
 <title>Page accueil admin</title>
 </h:head>
 <h:body>
-je suis dans la accueil admin
+
+<h:form>
+		<p:breadCrumb>
+			<p:menuitem value="AccueilAdmin" url="accueilAdmin.xhtml" />
+			<p:menuitem value="Categories" url="accueilCategorie.xhtml" />
+			<p:menuitem value="Produits" url="accueilProduit.xhtml" />
+
+		</p:breadCrumb>
+	</h:form>
+
+
+
+
+
+<h:form enctype="multipart/form-data">
+
+		<h:panelGrid columns="2">
+			Designation du produit: <h:inputText
+				value="#{prodMB.produit.designation}" />
+			Description: <h:inputText value="#{prodMB.produit.description}" />
+			Id Produit: <h:inputText value="#{prodMB.produit.idProduit}" />
+			Prix: <h:inputText value="#{prodMB.produit.prix}" />
+			Quantite: <h:inputText value="#{prodMB.produit.quantite}" />
+			ID Categorie: <h:inputText value="#{prodMB.categorie.idCategorie}"/>
+			
+			Image: <p:fileUpload value="#{prodMB.uf}" mode="simple" skinSimple="true"/>
+			<h:commandButton value="Modifier" action="#{prodMB.modifierProduit}" />
+		</h:panelGrid>
+	</h:form>
+
 
 
 

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
 <h:head>
 
-	<title>Page ajouterCategorie</title>
+<title>Page accueil admin</title>
 </h:head>
 <h:body>
-
-	<h:form>
+<h:form>
 		<p:breadCrumb>
 			<p:menuitem value="AccueilAdmin" url="accueilAdmin.xhtml" />
 			<p:menuitem value="Categories" url="accueilCategorie.xhtml" />
@@ -22,13 +21,15 @@
 	<h:form enctype="multipart/form-data">
 
 		<h:panelGrid columns="2">
-			Nom de la categorie: <h:inputText
-				value="#{catMB.categorie.nomCategorie}" />
+			Nom de la categorie: <h:inputText value="#{catMB.categorie.nomCategorie}" />
+			ID categorie: <h:inputText value="#{catMB.categorie.idCategorie}" />
 			Description: <h:inputText value="#{catMB.categorie.description}" />
 			Image: <p:fileUpload value="#{catMB.uf}" mode="simple" skinSimple="true"/>
-			<h:commandButton value="Ajouter" action="#{catMB.ajouterCategorie}" />
+			<h:commandButton value="Modifier" action="#{catMB.modifierCategorie}" />
 		</h:panelGrid>
 	</h:form>
+
+
 
 
 

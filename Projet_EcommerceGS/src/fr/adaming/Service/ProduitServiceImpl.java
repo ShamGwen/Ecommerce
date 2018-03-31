@@ -56,8 +56,10 @@ public class ProduitServiceImpl implements IProduitService {
 //	}
 
 	@Override
-	public Produit updateProduitService(Produit prod,Categorie cat) {
-    prod.setCategorie(cat);
+	public int updateProduitService(Produit prod,Categorie cat) {
+		System.out.println(cat.getIdCategorie());
+		Categorie catOUT=catDao.getCategorieById(cat);
+        prod.setCategorie(catOUT);
 		return prodDao.updateProduitDao(prod);
 
 	}

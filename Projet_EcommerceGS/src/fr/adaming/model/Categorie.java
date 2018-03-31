@@ -113,5 +113,8 @@ public class Categorie implements Serializable {
 				+ Arrays.toString(photo) + ", description=" + description + "]";
 	}
 
+	
+	
+
 
 }

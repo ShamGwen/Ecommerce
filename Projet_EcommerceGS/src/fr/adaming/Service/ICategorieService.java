@@ -13,7 +13,7 @@ public interface ICategorieService {
 
 	public Categorie addCategorieService(Categorie cat);
 
-	public Categorie updateCategorieService(Categorie cat);
+	public int updateCategorieService(Categorie cat);
 
 	public int deleteCategorieService(Categorie cat);
 

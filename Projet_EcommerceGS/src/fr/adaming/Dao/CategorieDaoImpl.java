@@ -44,14 +44,29 @@ public class CategorieDaoImpl implements ICategorieDao {
 
 
 	@Override
-	public Categorie updateCategorieDao(Categorie cat) {
-		Categorie catOut = em.find(Categorie.class, cat.getIdCategorie());
-		catOut.setNomCategorie(cat.getNomCategorie());
-		catOut.setDescription(cat.getDescription());
-		catOut.setPhoto(cat.getPhoto());
-		em.merge(catOut);
-		return catOut;
+	public int updateCategorieDao(Categorie cat) {
+		String req = "UPDATE Categorie cat set cat.description=:pDescription,cat.nomCategorie=:pNomCategorie,cat.photo=:pPhoto WHERE cat.id=:pIdCategorie";
+		Query query = em.createQuery(req);
+		
+		query.setParameter("pDescription", cat.getDescription());
+		
+		query.setParameter("pNomCategorie", cat.getNomCategorie());
+		query.setParameter("pPhoto", cat.getPhoto());
+		query.setParameter("pIdCategorie", cat.getIdCategorie());
+		
+
+		int verif = query.executeUpdate();
+		return verif;
 	}
+		
+		
+//		Categorie catOut = em.find(Categorie.class, cat.getIdCategorie());
+//		catOut.setNomCategorie(cat.getNomCategorie());
+//		catOut.setDescription(cat.getDescription());
+//		catOut.setPhoto(cat.getPhoto());
+//		em.merge(catOut);
+//		return catOut;
+
 
 
 	@Override

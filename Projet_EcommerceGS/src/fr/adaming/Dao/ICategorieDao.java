@@ -10,7 +10,7 @@ public interface ICategorieDao {
 	
 	public Categorie addCategorieDao(Categorie cat);
 	
-	public Categorie updateCategorieDao(Categorie cat);
+	public int updateCategorieDao(Categorie cat);
 	
 	public int deleteCategorieDao(Categorie cat);
 	

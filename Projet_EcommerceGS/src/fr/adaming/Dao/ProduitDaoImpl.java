@@ -43,16 +43,31 @@ public class ProduitDaoImpl implements IProduitDao {
 	}
 
 	@Override
-	public Produit updateProduitDao(Produit prod) {
-		Produit prodOut = em.find(Produit.class, prod.getIdProduit());
-		prodOut.setDescription(prod.getDescription());
-		prodOut.setDesignation(prod.getDesignation());
-		prodOut.setPrix(prod.getPrix());
-		prodOut.setPhoto(prod.getPhoto());
-		prodOut.setQuantite(prod.getQuantite());
-		prodOut.setSelectionne(prod.isSelectionne());
+	public int updateProduitDao(Produit prod) {
+		
+		
+		String req = "UPDATE Produit prod set prod.description=:pDescription,prod.designation=:pDesignation,prod.prix=:pPrix,prod.photo=:pPhoto,prod.quantite=:pQuantite WHERE prod.id=:pId and prod.categorie.id=:pIdCategorie";
+		Query query = em.createQuery(req);
+		
+		query.setParameter("pDescription", prod.getDescription());
+		query.setParameter("pDesignation", prod.getDesignation());
+		query.setParameter("pPrix", prod.getPrix());
+		query.setParameter("pPhoto", prod.getPhoto());
+		query.setParameter("pId", prod.getIdProduit());
+		query.setParameter("pIdCategorie", prod.getCategorie().getIdCategorie());
+		query.setParameter("pQuantite", prod.getQuantite());
+		int verif = query.executeUpdate();
+		return verif;
+		
+		
+//		prodOut.setDescription(prod.getDescription());
+//		prodOut.setDesignation(prod.getDesignation());
+//		prodOut.setPrix(prod.getPrix());
+//		prodOut.setPhoto(prod.getPhoto());
+//		prodOut.setQuantite(prod.getQuantite());
+//		prodOut.setSelectionne(prod.isSelectionne());
 
-		return prodOut;
+		//return prodOut;
 	}
 
 	@Override

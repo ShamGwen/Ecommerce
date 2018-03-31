@@ -19,6 +19,7 @@ import org.primefaces.model.UploadedFileWrapper;
 import fr.adaming.Service.ICategorieService;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
+import fr.adaming.model.Produit;
 
 @ManagedBean(name = "catMB")
 @RequestScoped
@@ -78,10 +79,10 @@ public class CategorieMB implements Serializable {
 	}
 
 	// Methodes metiers
-	public String afficherImage(){
+	//public String afficherImage(){
 		//File fnew = new File()
-		return null;
-	}
+		//return null;
+	//}
 	
 	public String ajouterCategorie(){
 		//ajouter la photo dans l'objet a ajouter
@@ -102,14 +103,24 @@ public class CategorieMB implements Serializable {
 		}
 	}
 	
-	public void modifierCategorie(RowEditEvent event){
-		
-		catServ.updateCategorieService((Categorie) event.getObject());
-		List<Categorie> listeOut = catServ.getAllCategoriesService();
-		maSession.setAttribute("listeCategorie", listeOut);
-		
-	}
+	public String modifierCategorie(){
+
+		int verif = catServ.updateCategorieService(categorie);
+		categorie.setPhoto(this.uf.getContents());
+		if (verif != 0) {
+			// recuperer la liste de clients
+			List<Categorie> liste = catServ.getAllCategoriesService();
+
 	
+			// metre a jour la liste dans la liste
+			this.listeCat = liste;
+			return "accueilCategorie";
+		} else {
+			// le messag een cas dechec
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("le produit n'est pas modifier"));
+			return "modifierCategorie";
+	}
+	}
 	public String supprimerCategorie(){
 		int verif = catServ.deleteCategorieService(categorie);
 		if(verif != 0){

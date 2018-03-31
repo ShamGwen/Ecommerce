@@ -30,6 +30,8 @@
 			<p:column headerText="Quantite">
 				<h:outputText value="#{prod.quantite}" />
 			</p:column>
+		
+			
 			
 			<p:column headerText="Photo du produit">
 				<h:graphicImage value="#{prod.image}" />
@@ -41,8 +43,8 @@
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:button value="Ajouter Produit" outcome="ajouterProduit.xhtml" />
-			<h:button value="Supprimer Produit"
-				outcome="supprimerProduit.xhtml" />
+			<h:button value="Supprimer Produit" outcome="supprimerProduit.xhtml" />
+				<h:button value="Modifier Produit" outcome="modifierProduit.xhtml" />
 		</h:panelGrid>
 	</h:form>
 

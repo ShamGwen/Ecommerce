@@ -129,6 +129,35 @@ public class ProduitMB implements Serializable {
 		}
 	}
 
+	public String modifierProduit(){
+		
+		int verif = prodService.updateProduitService(this.produit, this.categorie);
+		produit.setPhoto(this.uf.getContents());
+		if (verif != 0) {
+			// recuperer la liste de clients
+			List<Produit> liste = prodService.getAllProduitsService();
+
+	
+			// metre a jour la liste dans la liste
+			this.listeProduits=liste;;
+			return "accueilProduit";
+		} else {
+			// le messag een cas dechec
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("le produit n'est pas modifier"));
+			return "modifierProduit";
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 //	public String findProduit() {
 //		try {
 //			this.produit = prodService.rechercherProduitService(this.produit, this.categorie);
@@ -144,12 +173,6 @@ public class ProduitMB implements Serializable {
 //		return "rechercherProduit";
 //	}
 //
-//	public void modifierProduit(RowEditEvent event) {
-//
-//		Produit prodModif = prodService.updateProduitService((Produit) event.getObject());
-//		List<Produit> liste = prodService.getAllProduitsService(this.categorie);
-//		maSession.setAttribute("listeProduits", liste);
-//
-//	}
+//	
 
 }

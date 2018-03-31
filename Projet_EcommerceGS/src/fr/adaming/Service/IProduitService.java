@@ -20,7 +20,7 @@ public interface IProduitService {
 
 	public Produit rechercherProduitService(Produit prod);
 
-	public Produit updateProduitService(Produit prod,Categorie cat);
+	public int updateProduitService(Produit prod,Categorie cat);
 
 	public List<Produit> getAllProduitsService();
 
