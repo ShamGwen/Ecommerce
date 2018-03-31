@@ -12,7 +12,7 @@ public class ClientDaoImpl implements IClientDao {
 	@PersistenceContext(unitName="Projet_EcommerceGS")
 	private EntityManager em;
 
-	//@Override
+	@Override
 	public Client isExist(Client cl) {
 		// la requete jpql
 		String req = "SELECT cl from Client as cl WHERE cl.nom=:pNom,cl.adresse=:pAdresse,cl.tel=:pTel,cl.email=:pEmail";
@@ -20,7 +20,7 @@ public class ClientDaoImpl implements IClientDao {
 		Query query = em.createQuery(req);
 
 		// passage de la params
-		//query.setParameter("pNom", cl.getNomClient());
+		query.setParameter("pNom", cl.getNomClient());
 		query.setParameter("pNom", cl.getNomClient());
 		query.setParameter("pAdresse", cl.getAdresse());
 		query.setParameter("pEmail", cl.getEmail());

@@ -13,7 +13,7 @@ import fr.adaming.model.Commande;
 
 @Stateless
 public class CommandeDaoImpl implements ICommandeDao {
-	@PersistenceContext(unitName = "")
+	@PersistenceContext(unitName = "Projet_EcommerceGS")
 	private EntityManager em;
 
 	@Override
@@ -26,6 +26,26 @@ public class CommandeDaoImpl implements ICommandeDao {
 		// envoyer la requte et recup la resultat
 		return query.getResultList();
 
+
+	}
+
+	@Override
+	public Commande addCommande(Commande com) {
+		em.persist(com);
+		return com;
+	}
+
+	@Override
+	public int deleteCommande(Commande com) {
+		String req = "DELETE FROM Commande com WHERE com.id=:pIdCom and com.client.id=:pIdCl";
+		Query query = em.createQuery(req);
+		
+		// passage de params
+		query.setParameter("pIdCom", com.getIdCommande());
+		query.setParameter("pIdCl",com.getClient().getIdClient());
+		
+		int verif=query.executeUpdate();
+		return verif;
 
 	}
 

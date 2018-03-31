@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+<title>Page accueil admin</title>
+</h:head>
+<h:body>
+<p:dataTable var="lcom" value="#{lcomMB.listeligneCommandes}">
+		<f:facet name="header">Liste des Lignecommandes</f:facet>
+			<p:column headerText="Id">
+				<h:outputText value="#{lcom.idLC}" />
+			</p:column>
+
+			<p:column headerText="Quantite">
+				<h:outputText value="#{lcom.quantite}" />
+			</p:column>
+			
+			<p:column headerText="Prix">
+				<h:outputText value="#{lcom.prix}" />
+			</p:column>
+			
+			<p:column headerText="Id Produit">
+				<h:outputText value="#{lcom.produit.idProduit}" />
+			</p:column>
+			
+			<p:column headerText="Id Commande">
+				<h:outputText value="#{lcom.commande.idCommande}" />
+			</p:column>
+			
+			
+		</p:dataTable>
+	</h:form>
+
+
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:button value="Ajouter LigneCommande" outcome="ajouterLigneCommande.xhtml" />
+			<h:button value="Supprimer LigneCommande" outcome="supprimerLigneCommande.xhtml" />
+		</h:panelGrid>
+	</h:form>
+
+
+
+
+
+
+
+
+</h:body>
+</html>

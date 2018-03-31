@@ -20,4 +20,18 @@ public class CommandeServiceImpl implements ICommandeService {
 	return comDao.getAllCommandesDao(cl);
 	}
 
+	@Override
+	public Commande addCommande(Commande com, Client cl) {
+        com.setClient(cl);
+		return comDao.addCommande(com) ;
+	}
+
+	@Override
+	public int deleteCommande(Commande com, Client cl) {
+		com.setClient(cl);
+		return comDao.deleteCommande(com);
+	}
+	
+
+
 }
