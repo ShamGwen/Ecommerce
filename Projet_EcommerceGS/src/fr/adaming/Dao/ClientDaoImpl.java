@@ -28,6 +28,6 @@ public class ClientDaoImpl implements IClientDao {
 		// envoyer la requte et recup du resultat
 		return (Client) query.getSingleResult();
 
-	}
+	}bhjhgjhbhj
 
 }
