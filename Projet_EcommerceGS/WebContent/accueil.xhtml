@@ -16,6 +16,10 @@
 	</h:form>
 	<br />
 	<h:form>
+		Rechercher: <h:inputText label="mot-clé" />
+	</h:form>
+	<br/>
+	<h:form>
 		<p:dataGrid var="cat" value="#{catMB.listeCat}" columns="3"
 			layout="grid" id="categ">
 
@@ -25,8 +29,9 @@
 
 			<p:panel header="#{cat.nomCategorie}" style="text-align:center" >
 				<h:panelGrid columns="1" style="width:100%">
-					<h:commandLink action="voirProduitCategorie.xhtml"  >
+					<h:commandLink action="#{prodMB.afficherListeProduitsSpecifiques}">
 						<h:graphicImage value="#{cat.image}" />
+						<f:setPropertyActionListener value="#{cat}" target="#{prodMB.categorie}" />
 					</h:commandLink>
 					
 					<h:outputText value="#{cat.description}" />

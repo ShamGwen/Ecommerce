@@ -153,10 +153,11 @@ public class ProduitMB implements Serializable {
 		
 	}
 	
-	public void afficherListeProduitsSpecifiques(){
+	public String afficherListeProduitsSpecifiques(){
 		//mettre a jour la liste des produits
 		List<Produit> liste = prodService.getAllProduitsService(categorie);
 		this.listeProduits = liste;
+		return "voirProduitCategorie";
 	}
 	
 	
