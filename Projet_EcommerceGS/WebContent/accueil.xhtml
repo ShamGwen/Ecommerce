@@ -9,20 +9,32 @@
 	<title>Page accueil</title>
 </h:head>
 <h:body>
-je suis dans la accueil du site
 
 	<h:form>
-		<p:dataList value="#{catMB.listeCat}" var="categ"
-			type="ordered">
-			<f:facet name="header">
-            	Basic
-        	</f:facet>
-        	#{categ.nomCategorie}, #{categ.description}
-    	</p:dataList>
+		<h:button value="Connexion Administrateur" outcome="login.xhtml"
+			style="height:60px;background-color:#ff99ff" />
 	</h:form>
-
+	<br />
 	<h:form>
-		<h:commandButton value="AfficherImage" action=""/>
+		<p:dataGrid var="cat" value="#{catMB.listeCat}" columns="3"
+			layout="grid" id="categ">
+
+			<f:facet name="header">
+            Categories
+        	</f:facet>
+
+			<p:panel header="#{cat.nomCategorie}" style="text-align:center" >
+				<h:panelGrid columns="1" style="width:100%">
+					<p:graphicImage value="cat.image" height="48px" width="48px" />
+
+
+					<h:outputText value="#{cat.description}"/>
+
+
+				</h:panelGrid>
+			</p:panel>
+
+		</p:dataGrid>
 	</h:form>
 
 

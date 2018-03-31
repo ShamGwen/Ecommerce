@@ -25,8 +25,16 @@
 		<param-value>Development</param-value>
 	</context-param>
 
-	
+	<!-- Modifier le theme primefaces -->
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>black-tie</param-value>
+	</context-param>
 
+	<!-- Declaration de la page d'accueil -->
+	<welcome-file-list>
+		<welcome-file>accueil.xhtml</welcome-file>
+	</welcome-file-list>
 
 
 </web-app>

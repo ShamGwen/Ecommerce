@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 import fr.adaming.model.Administrateur;
 
 @Stateless
-
 public class AdminDaoImpl implements IAdminDao {
 	@PersistenceContext(unitName = "Projet_EcommerceGS")
 	private EntityManager em;
