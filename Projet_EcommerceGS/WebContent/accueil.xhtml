@@ -16,9 +16,10 @@
 	</h:form>
 	<br />
 	<h:form>
-		Rechercher: <h:inputText label="mot-clé" />
+		Rechercher: <h:inputText label="mot-clé" value="#{prodMB.motCle}"/>
+		<h:commandButton value="Rechercher" action="#{prodMB.afficherListeProduitsSpecifiques}"/>
 	</h:form>
-	<br/>
+	<br />
 	<h:form>
 		<p:dataGrid var="cat" value="#{catMB.listeCat}" columns="3"
 			layout="grid" id="categ">

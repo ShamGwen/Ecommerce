@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -33,6 +34,7 @@ public class ProduitMB implements Serializable {
 	private List<Produit> listeProduits;
 	private Boolean indice;
 	private UploadedFile uf;
+	private String motCle;
 
 	// constructeur vide
 	public ProduitMB() {
@@ -43,7 +45,8 @@ public class ProduitMB implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		//this.categorie = (Categorie) maSession.getAttribute("categorieSession");
+		// this.categorie = (Categorie)
+		// maSession.getAttribute("categorieSession");
 		this.maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		this.listeProduits = prodService.getAllProduitsService();
 
@@ -90,6 +93,14 @@ public class ProduitMB implements Serializable {
 		this.uf = uf;
 	}
 
+	public String getMotCle() {
+		return motCle;
+	}
+
+	public void setMotCle(String motCle) {
+		this.motCle = motCle;
+	}
+
 	// methodes metier
 	public String ajouterProduit() {
 		produit.setPhoto(this.uf.getContents());
@@ -100,7 +111,7 @@ public class ProduitMB implements Serializable {
 			List<Produit> liste = prodService.getAllProduitsService();
 
 			// metre a jour la liste dans la liste
-			this.listeProduits=liste;
+			this.listeProduits = liste;
 			return "accueilProduit";
 		} else {
 
@@ -111,16 +122,14 @@ public class ProduitMB implements Serializable {
 		}
 	}
 
-	
-
 	public String deleteProduit() {
 		int verif = prodService.deleteProduitService(this.produit);
-		if (verif !=0) {
+		if (verif != 0) {
 			// recuperer la liste de clients
 			List<Produit> liste = prodService.getAllProduitsService();
 
 			// mettre a jour la lisste dans la session
-			this.listeProduits=liste;
+			this.listeProduits = liste;
 			return "accueilProduit";
 		} else {
 			// le messag een cas dechec
@@ -129,55 +138,58 @@ public class ProduitMB implements Serializable {
 		}
 	}
 
-	public String modifierProduit(){
-		
+	public String modifierProduit() {
+
 		int verif = prodService.updateProduitService(this.produit, this.categorie);
 		produit.setPhoto(this.uf.getContents());
 		if (verif != 0) {
 			// recuperer la liste de clients
 			List<Produit> liste = prodService.getAllProduitsService();
 
-	
 			// metre a jour la liste dans la liste
-			this.listeProduits=liste;;
+			this.listeProduits = liste;
+			;
 			return "accueilProduit";
 		} else {
 			// le messag een cas dechec
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("le produit n'est pas modifier"));
 			return "modifierProduit";
 		}
-		
-		
-		
-		
-		
+
 	}
-	
-	public String afficherListeProduitsSpecifiques(){
-		//mettre a jour la liste des produits
+
+	public String afficherListeProduitsSpecifiques() {
+		// mettre a jour la liste des produits
 		List<Produit> liste = prodService.getAllProduitsService(categorie);
 		this.listeProduits = liste;
 		return "voirProduitCategorie";
 	}
-	
-	
-	
-	
-//	public String findProduit() {
-//		try {
-//			this.produit = prodService.rechercherProduitService(this.produit, this.categorie);
-//			this.indice = true;
-//
-//		} catch (Exception ex) {
-//
-//			// le message en cas dechec
-//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("le produit chercher n'exist pas "));
-//			this.indice = false;
-//
-//		}
-//		return "rechercherProduit";
-//	}
-//
-//	
+
+	public String rechercherMotCle() {
+		List<Produit> listeRech = prodService.getProduitsRechService(motCle);
+		this.listeProduits = listeRech;
+
+		return "produitsRecherches.xhtml";
+
+	}
+
+	// public String findProduit() {
+	// try {
+	// this.produit = prodService.rechercherProduitService(this.produit,
+	// this.categorie);
+	// this.indice = true;
+	//
+	// } catch (Exception ex) {
+	//
+	// // le message en cas dechec
+	// FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("le
+	// produit chercher n'exist pas "));
+	// this.indice = false;
+	//
+	// }
+	// return "rechercherProduit";
+	// }
+	//
+	//
 
 }

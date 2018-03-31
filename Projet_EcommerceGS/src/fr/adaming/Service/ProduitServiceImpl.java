@@ -1,11 +1,14 @@
 package fr.adaming.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
 import org.primefaces.event.RowEditEvent;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
 import fr.adaming.Dao.ICategorieDao;
 import fr.adaming.Dao.IProduitDao;
@@ -17,7 +20,7 @@ public class ProduitServiceImpl implements IProduitService {
 	// injecter produit Dao
 	@EJB
 	IProduitDao prodDao;
-	
+
 	@EJB
 	ICategorieDao catDao;
 
@@ -28,38 +31,38 @@ public class ProduitServiceImpl implements IProduitService {
 	}
 
 	@Override
-	public Produit ajouterProduitService(Produit prod,Categorie cat) {
+	public Produit ajouterProduitService(Produit prod, Categorie cat) {
 		System.out.println(cat.getIdCategorie());
-		Categorie catOut=catDao.getCategorieById(cat);
-		
+		Categorie catOut = catDao.getCategorieById(cat);
+
 		prod.setCategorie(catOut);
 		return prodDao.ajouterProduitDao(prod);
 	}
 
 	@Override
 	public int deleteProduitService(Produit prod) {
-		
+
 		return prodDao.deleteProduitDao(prod);
 	}
 
-//	@Override
-//	public Produit rechercherProduitService(Produit prod) {
-//		// rechercher produit
-//		Produit prodOut = prodDao.rechercherProduitDao(prod);
-//		//if (prodOut.getCategorie().getIdCategorie() == prod.getIdCategorie()) {
-//
-//			//return prodOut;
-//		//} else {
-//			return null;
-//		}
-//
-//	}
+	// @Override
+	// public Produit rechercherProduitService(Produit prod) {
+	// // rechercher produit
+	// Produit prodOut = prodDao.rechercherProduitDao(prod);
+	// //if (prodOut.getCategorie().getIdCategorie() == prod.getIdCategorie()) {
+	//
+	// //return prodOut;
+	// //} else {
+	// return null;
+	// }
+	//
+	// }
 
 	@Override
-	public int updateProduitService(Produit prod,Categorie cat) {
+	public int updateProduitService(Produit prod, Categorie cat) {
 		System.out.println(cat.getIdCategorie());
-		Categorie catOUT=catDao.getCategorieById(cat);
-        prod.setCategorie(catOUT);
+		Categorie catOUT = catDao.getCategorieById(cat);
+		prod.setCategorie(catOUT);
 		return prodDao.updateProduitDao(prod);
 
 	}
@@ -75,4 +78,26 @@ public class ProduitServiceImpl implements IProduitService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Produit> getProduitsRechService(String motCle) {
+		// recuperer la liste de tous les produits
+		List<Produit> listeProd = prodDao.getAllProduitsDao();
+		// initialisation d'une liste de recuperation des produits dont la description contient le mot cle
+		List<Produit> listeRech = new ArrayList<Produit>();
+		for(Produit p : listeProd) {
+			if (p.getDescription().contains(motCle)) {
+				// si la description du produit contient le mot-cle on ajoute le produit dans la deuxieme liste
+				listeRech.add(p);
+			}
+		}
+		System.out.println("mot cle: "+motCle);
+		System.out.println("Liste produits: ***********");
+		listeProd.forEach(System.out::println);
+		System.out.println("Liste recherches: ************");
+		listeRech.forEach(System.out::println);
+		
+		return listeRech;
+	}
+
 }
