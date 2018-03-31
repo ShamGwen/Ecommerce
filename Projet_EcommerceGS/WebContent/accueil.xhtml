@@ -25,20 +25,15 @@
 
 			<p:panel header="#{cat.nomCategorie}" style="text-align:center" >
 				<h:panelGrid columns="1" style="width:100%">
-					<p:graphicImage value="cat.image" height="48px" width="48px" />
-
-
-					<h:outputText value="#{cat.description}"/>
-
+					<h:commandLink action="voirProduitCategorie.xhtml"  >
+						<h:graphicImage value="#{cat.image}" />
+					</h:commandLink>
+					
+					<h:outputText value="#{cat.description}" />
 
 				</h:panelGrid>
 			</p:panel>
-
 		</p:dataGrid>
 	</h:form>
-
-
-
-
 </h:body>
 </html>

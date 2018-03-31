@@ -30,27 +30,26 @@ public class CategorieMB implements Serializable {
 	private HttpSession maSession;
 	private List<Categorie> listeCat;
 	private UploadedFile uf;
-	
 
-	
-	//transformation de l'association UML en Java
+	// transformation de l'association UML en Java
 	@EJB
 	private ICategorieService catServ;
 
 	// Constructeur vide
 	public CategorieMB() {
 		this.categorie = new Categorie();
-		
+
 	}
 
 	@PostConstruct
 	public void init() {
-		//recuperer la liste des categories
+		// recuperer la liste des categories
 		this.listeCat = catServ.getAllCategoriesService();
 		maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		//ajouter la liste des categories dans la session
+		// ajouter la liste des categories dans la session
 		maSession.setAttribute("listeCategorie", listeCat);
-		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listeCat", this.listeCat);
+		// FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listeCat",
+		// this.listeCat);
 	}
 
 	// Getters et setters
@@ -79,15 +78,15 @@ public class CategorieMB implements Serializable {
 	}
 
 	// Methodes metiers
-	//public String afficherImage(){
-		//File fnew = new File()
-		//return null;
-	//}
-	
-	public String ajouterCategorie(){
-		//ajouter la photo dans l'objet a ajouter
+	// public String afficherImage(){
+	// File fnew = new File()
+	// return null;
+	// }
+
+	public String ajouterCategorie() {
+		// ajouter la photo dans l'objet a ajouter
 		categorie.setPhoto(this.uf.getContents());
-		
+
 		Categorie catOut = catServ.addCategorieService(categorie);
 
 		if (catOut.getIdCategorie() != 0) {
@@ -95,15 +94,15 @@ public class CategorieMB implements Serializable {
 			List<Categorie> liste = catServ.getAllCategoriesService();
 			// mettre a jour
 			this.listeCat = liste;
-			
+
 			return "accueilCategorie";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La categorie n'a pas été ajoutée!!"));
 			return "ajouterCategorie";
 		}
 	}
-	
-	public String modifierCategorie(){
+
+	public String modifierCategorie() {
 
 		int verif = catServ.updateCategorieService(categorie);
 		categorie.setPhoto(this.uf.getContents());
@@ -111,7 +110,6 @@ public class CategorieMB implements Serializable {
 			// recuperer la liste de clients
 			List<Categorie> liste = catServ.getAllCategoriesService();
 
-	
 			// metre a jour la liste dans la liste
 			this.listeCat = liste;
 			return "accueilCategorie";
@@ -119,17 +117,18 @@ public class CategorieMB implements Serializable {
 			// le messag een cas dechec
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("le produit n'est pas modifier"));
 			return "modifierCategorie";
+		}
 	}
-	}
-	public String supprimerCategorie(){
+
+	public String supprimerCategorie() {
 		int verif = catServ.deleteCategorieService(categorie);
-		if(verif != 0){
+		if (verif != 0) {
 			List<Categorie> liste = catServ.getAllCategoriesService();
 			this.listeCat = liste;
 			return "accueilCategorie";
-		}
-		else{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La catégorie n'a pas été supprimée!!"));
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("La catégorie n'a pas été supprimée!!"));
 			return "supprimerCategorie";
 		}
 	}
