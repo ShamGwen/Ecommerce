@@ -20,7 +20,7 @@ public class ClientDaoImpl implements IClientDao {
 		Query query = em.createQuery(req);
 
 		// passage de la params
-
+		//query.setParameter("pNom", cl.getNomClient());
 		query.setParameter("pNom", cl.getNomClient());
 		query.setParameter("pAdresse", cl.getAdresse());
 		query.setParameter("pEmail", cl.getEmail());
@@ -28,6 +28,5 @@ public class ClientDaoImpl implements IClientDao {
 		// envoyer la requte et recup du resultat
 		return (Client) query.getSingleResult();
 
-	}bhjhgjhbhj
-
+	}
 }
