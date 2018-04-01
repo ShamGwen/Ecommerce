@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<title>Page voirProduitSeul</title>
+</h:head>
+<h:body>
+
+
+	<h:form>
+
+		<p:panelGrid columns="1" style="width:100%;margin:10px 0px">
+			<f:facet name="header">
+				<h:graphicImage value="#{prodMB.produit.image}" />
+			</f:facet>
+			<h:outputText value="#{prodMB.produit.designation}"
+				style="text-align:center" />
+			<h:outputText value="#{prodMB.produit.description}"
+				style="text-align:center" />
+			<h:outputText value="#{prodMB.produit.prix} €"
+				style="font-weight: bold;text-align:center" />
+		</p:panelGrid>
+	</h:form>
+	<h:form>
+		<h:panelGrid columns="2">
+				Quantite: <p:inputText value="#{panierMB.lcom.quantite}" />
+		</h:panelGrid>
+		<h:commandLink action="#{panierMB.ajouterLCdansPanier}">
+			<p:commandButton value="Ajouter au panier" />
+			<f:setPropertyActionListener value="#{prodMB.produit}"
+				target="#{panierMB.produit}" />
+		</h:commandLink>
+
+	</h:form>
+
+	<h:messages style="color:red" />
+
+
+
+</h:body>
+</html>

@@ -148,7 +148,6 @@ public class ProduitMB implements Serializable {
 
 			// metre a jour la liste dans la liste
 			this.listeProduits = liste;
-			;
 			return "accueilProduit";
 		} else {
 			// le messag een cas dechec
@@ -163,6 +162,10 @@ public class ProduitMB implements Serializable {
 		List<Produit> liste = prodService.getAllProduitsService(categorie);
 		this.listeProduits = liste;
 		return "voirProduitCategorie";
+	}
+	
+	public String afficherFicheProduit(){
+		return "voirProduitSeul";
 	}
 
 	public String rechercherMotCle() {

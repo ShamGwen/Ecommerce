@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<title>Page panier</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:dataTable var="lc" value="#{panierMB.listeLC}">
+			<f:facet name="header">Commande du panier</f:facet>
+			<p:column headerText="Reference du produit">
+				<h:outputText value="#{lc.produit.designation}" />
+			</p:column>
+			<p:column headerText="Description du produit">
+				<h:outputText value="#{lc.produit.description}" />
+			</p:column>
+			<p:column headerText="Prix unitaire">
+				<h:outputText value="#{lc.produit.prix}" />
+			</p:column>
+			<p:column headerText="Quantite">
+				<h:outputText value="#{lc.quantite}" />
+			</p:column>
+			<p:column headerText="Montant">
+				<h:outputText value="#{lc.prix}" />
+			</p:column>
+		</p:dataTable>
+		
+		Montant total: #{panierMB.montantTotal}" 
+	</h:form>
+
+
+	<h:messages style="color:red" />
+
+
+
+</h:body>
+</html>
