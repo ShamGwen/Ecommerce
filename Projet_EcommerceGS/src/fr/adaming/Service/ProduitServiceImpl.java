@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
+import org.apache.commons.codec.binary.Base64;
 import org.primefaces.event.RowEditEvent;
 
 import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
@@ -23,6 +26,8 @@ public class ProduitServiceImpl implements IProduitService {
 
 	@EJB
 	ICategorieDao catDao;
+	
+	private EntityManager em;
 
 	@Override
 	public List<Produit> getAllProduitsService(Categorie cat) {
@@ -78,9 +83,8 @@ public class ProduitServiceImpl implements IProduitService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public List<Produit> getProduitsRechService(String motCle) {
+	public List<Produit> getProduitsRechService(String motCle){
+	
 		// recuperer la liste de tous les produits
 		List<Produit> listeProd = prodDao.getAllProduitsDao();
 		// initialisation d'une liste de recuperation des produits dont la description contient le mot cle
@@ -98,6 +102,9 @@ public class ProduitServiceImpl implements IProduitService {
 		listeRech.forEach(System.out::println);
 		
 		return listeRech;
+	
 	}
-
 }
+
+	
+		

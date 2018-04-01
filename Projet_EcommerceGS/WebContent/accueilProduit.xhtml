@@ -30,8 +30,10 @@
 			<p:column headerText="Quantite">
 				<h:outputText value="#{prod.quantite}" />
 			</p:column>
-		
 			
+		<p:column headerText="Id Categorie">
+				<h:outputText value="#{prod.categorie.idCategorie}" />
+			</p:column>
 			
 			<p:column headerText="Photo du produit">
 				<h:graphicImage value="#{prod.image}" />

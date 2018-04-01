@@ -139,9 +139,9 @@ public class ProduitMB implements Serializable {
 	}
 
 	public String modifierProduit() {
-
-		int verif = prodService.updateProduitService(this.produit, this.categorie);
 		produit.setPhoto(this.uf.getContents());
+		int verif = prodService.updateProduitService(this.produit, this.categorie);
+		
 		if (verif != 0) {
 			// recuperer la liste de clients
 			List<Produit> liste = prodService.getAllProduitsService();

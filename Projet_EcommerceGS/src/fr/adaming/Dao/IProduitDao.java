@@ -23,5 +23,7 @@ public interface IProduitDao {
 	public Produit rechercherProduitDao(Produit prod);
 
 	public List<Produit> getAllProduitsDao();
+	
+
 
 }

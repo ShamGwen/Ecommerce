@@ -101,6 +101,9 @@ public class ProduitDaoImpl implements IProduitDao {
 		}
 		return listeOut;
 
+	
+	
+
 	}
 
 }

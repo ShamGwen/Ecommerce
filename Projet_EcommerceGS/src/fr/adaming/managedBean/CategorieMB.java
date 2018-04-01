@@ -103,9 +103,10 @@ public class CategorieMB implements Serializable {
 	}
 
 	public String modifierCategorie() {
-
-		int verif = catServ.updateCategorieService(categorie);
 		categorie.setPhoto(this.uf.getContents());
+		
+		int verif = catServ.updateCategorieService(categorie);
+		
 		if (verif != 0) {
 			// recuperer la liste de clients
 			List<Categorie> liste = catServ.getAllCategoriesService();

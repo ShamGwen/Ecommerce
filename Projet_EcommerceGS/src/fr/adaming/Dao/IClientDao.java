@@ -7,6 +7,9 @@ import fr.adaming.model.Client;
 @Local
 public interface IClientDao {
 	
-public Client isExist (Client cl);
+public Client ajouterClientDao(Client cl);
+
+Client isExist(Client cl);
+
 
 }
