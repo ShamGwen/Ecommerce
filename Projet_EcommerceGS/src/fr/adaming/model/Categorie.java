@@ -24,10 +24,9 @@ public class Categorie implements Serializable {
 	@Column(name="id_cat")
 	private Long idCategorie;
 	private String nomCategorie;
-	
+	private String description;
 	@Lob
 	private byte photo[];
-	private String description;
 	@Transient
 	private String image;
 	

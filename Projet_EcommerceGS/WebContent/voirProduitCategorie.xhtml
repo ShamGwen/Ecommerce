@@ -13,11 +13,11 @@
 
 
 	<h:form>
-		<p:dataGrid var="prod" value="#{prodMB.listeProduits}" columns="4"
+		<p:dataGrid var="prod" value="#{sessionScope.prodListe}" columns="4"
 			layout="grid" id="prod">
 
 			<f:facet name="header">
-				"#{prodMB.categorie.nomCategorie}"
+				"#{sessionScope.categ.nomCategorie}"
         	</f:facet>
 
 			<p:panel header="#{prod.designation}" style="text-align:center">

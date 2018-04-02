@@ -49,6 +49,8 @@ public class ProduitMB implements Serializable {
 		// maSession.getAttribute("categorieSession");
 		this.maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		this.listeProduits = prodService.getAllProduitsService();
+		//ajout de la liste dans la session
+		maSession.setAttribute("prodListe", listeProduits);
 
 	}
 
@@ -160,11 +162,15 @@ public class ProduitMB implements Serializable {
 	public String afficherListeProduitsSpecifiques() {
 		// mettre a jour la liste des produits
 		List<Produit> liste = prodService.getAllProduitsService(categorie);
-		this.listeProduits = liste;
+		maSession.setAttribute("prodListe", liste);
+		//ajout de la categorie dans la session
+		maSession.setAttribute("categ", categorie);
 		return "voirProduitCategorie";
 	}
 	
 	public String afficherFicheProduit(){
+		//enregistrer le produit selectionné dans la session
+		maSession.setAttribute("produitSession", produit);
 		return "voirProduitSeul";
 	}
 

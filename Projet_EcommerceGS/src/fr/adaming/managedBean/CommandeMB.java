@@ -96,7 +96,7 @@ public class CommandeMB implements Serializable {
 	 public String deleteCommande(){
 		
 
-	 int verif=commandeService.deleteCommande(this.commande,this.client);
+	 int verif=commandeService.deleteCommande(this.commande);
 	 if(verif !=0){
 	 //recupere la lsite de la commandes
 	 

@@ -37,12 +37,12 @@ public class CommandeDaoImpl implements ICommandeDao {
 
 	@Override
 	public int deleteCommande(Commande com) {
-		String req = "DELETE FROM Commande com WHERE com.id=:pIdCom and com.client.id=:pIdCl";
+		String req = "DELETE FROM Commande com WHERE com.id=:pIdCom ";
 		Query query = em.createQuery(req);
 		
 		// passage de params
 		query.setParameter("pIdCom", com.getIdCommande());
-		query.setParameter("pIdCl",com.getClient().getIdClient());
+		
 		
 		int verif=query.executeUpdate();
 		return verif;

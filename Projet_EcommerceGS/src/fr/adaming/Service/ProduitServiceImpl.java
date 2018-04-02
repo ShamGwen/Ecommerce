@@ -80,9 +80,11 @@ public class ProduitServiceImpl implements IProduitService {
 
 	@Override
 	public Produit rechercherProduitService(Produit prod) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return prodDao.rechercherProduitDao(prod);
 	}
+	
+	
 	public List<Produit> getProduitsRechService(String motCle){
 	
 		// recuperer la liste de tous les produits

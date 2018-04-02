@@ -10,21 +10,18 @@ xmlns:p="http://primefaces.org/ui">
 </h:head>
 <h:body>
 <h:form>
-	
+		<h1>Veuillez entrer vos informations afin de finaliser la commande</h1>
 		<h:panelGrid columns="2">
 		 nomClient <h:inputText value="#{clMB.client.nomClient}" />
 			Adresse <h:inputText value="#{clMB.client.adresse}" />
 			E-Mail: <h:inputText value="#{clMB.client.email}" />
 				Tel: <h:inputText value="#{clMB.client.tel}" />
 			<h:commandButton value="Valider" action="#{clMB.seConnecter}"/>
+			
+			<h:commandButton value="Annuler" action="#{clMB.annulerIdentification}"/>
 		</h:panelGrid>
 	</h:form>
 	<h:messages style="color:red"/>
-
-
-
-
-
 
 
 

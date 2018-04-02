@@ -27,12 +27,11 @@
 	</h:form>
 	<h:form>
 		<h:panelGrid columns="2">
-				Quantite: <p:inputText value="#{panierMB.lcom.quantite}" />
+				Quantite: <p:inputText value="#{panierMB.quantite}" />
 		</h:panelGrid>
 		<h:commandLink action="#{panierMB.ajouterLCdansPanier}">
 			<p:commandButton value="Ajouter au panier" />
-			<f:setPropertyActionListener value="#{prodMB.produit}"
-				target="#{panierMB.produit}" />
+
 		</h:commandLink>
 
 	</h:form>
