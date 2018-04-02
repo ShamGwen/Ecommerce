@@ -14,9 +14,16 @@
 		<ui:define name="body">
 			<h:form>
 				<h:button value="Connexion Administrateur" outcome="login.xhtml"
-					style="height:60px;background-color:#ff99ff" />
+					style="height:40px; margin-left:500px" />
+
+
+
+				<h:graphicImage library="images" name="panier.jpg" value="Panier" 
+					url="panier.xhtml" style="height:50px; width:50px; margin-left:500px"  />
+                 
+
 			</h:form>
-			<br />
+
 			<h:form>
 				Rechercher: <h:inputText label="mot-clé" value="#{prodMB.motCle}" />
 				<h:commandButton value="Rechercher"
