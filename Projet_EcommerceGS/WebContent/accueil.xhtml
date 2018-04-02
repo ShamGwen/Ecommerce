@@ -7,39 +7,51 @@
 <h:head>
 
 	<title>Page accueil</title>
+	<h:outputStylesheet library="css" name="monStyle.css" />
 </h:head>
 <h:body>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="body">
+			<h:form>
+				<h:button value="Connexion Administrateur" outcome="login.xhtml"
+					style="height:60px;background-color:#ff99ff" />
+			</h:form>
+			<br />
+			<h:form>
+				Rechercher: <h:inputText label="mot-clé" value="#{prodMB.motCle}" />
+				<h:commandButton value="Rechercher"
+					action="#{prodMB.afficherListeProduitsSpecifiques}" />
+			</h:form>
+			<br />
+			<h:form>
+				<p:dataGrid var="cat" value="#{catMB.listeCat}" columns="3"
+					layout="grid" id="categ">
 
-	<h:form>
-		<h:button value="Connexion Administrateur" outcome="login.xhtml"
-			style="height:60px;background-color:#ff99ff" />
-	</h:form>
-	<br />
-	<h:form>
-		Rechercher: <h:inputText label="mot-clé" value="#{prodMB.motCle}"/>
-		<h:commandButton value="Rechercher" action="#{prodMB.afficherListeProduitsSpecifiques}"/>
-	</h:form>
-	<br />
-	<h:form>
-		<p:dataGrid var="cat" value="#{catMB.listeCat}" columns="3"
-			layout="grid" id="categ">
-
-			<f:facet name="header">
+					<f:facet name="header">
             Categories
         	</f:facet>
 
-			<p:panel header="#{cat.nomCategorie}" style="text-align:center" >
-				<h:panelGrid columns="1" style="width:100%">
-					<h:commandLink action="#{prodMB.afficherListeProduitsSpecifiques}">
-						<h:graphicImage value="#{cat.image}" />
-						<f:setPropertyActionListener value="#{cat}" target="#{prodMB.categorie}" />
-					</h:commandLink>
-					
-					<h:outputText value="#{cat.description}" />
+					<p:panel header="#{cat.nomCategorie}" style="text-align:center">
+						<h:panelGrid columns="1" style="width:100%">
+							<h:commandLink
+								action="#{prodMB.afficherListeProduitsSpecifiques}">
+								<h:graphicImage value="#{cat.image}" />
+								<f:setPropertyActionListener value="#{cat}"
+									target="#{prodMB.categorie}" />
+							</h:commandLink>
 
-				</h:panelGrid>
-			</p:panel>
-		</p:dataGrid>
-	</h:form>
+							<h:outputText value="#{cat.description}" />
+
+						</h:panelGrid>
+					</p:panel>
+				</p:dataGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+
+
+
+
 </h:body>
 </html>
