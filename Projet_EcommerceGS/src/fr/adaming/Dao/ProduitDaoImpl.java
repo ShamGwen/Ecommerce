@@ -13,7 +13,7 @@ import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 
 @Stateless
-public class ProduitDaoImpl implements IProduitDao {
+public  class ProduitDaoImpl implements IProduitDao {
 	@PersistenceContext(unitName = "Projet_EcommerceGS")
 	private EntityManager em;
 
@@ -105,5 +105,6 @@ public class ProduitDaoImpl implements IProduitDao {
 	
 
 	}
+
 
 }

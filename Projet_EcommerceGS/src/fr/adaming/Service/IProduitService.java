@@ -25,4 +25,6 @@ public interface IProduitService {
 	public List<Produit> getAllProduitsService();
 
 	public List<Produit> getProduitsRechService(String motCle);
+	
+
 }

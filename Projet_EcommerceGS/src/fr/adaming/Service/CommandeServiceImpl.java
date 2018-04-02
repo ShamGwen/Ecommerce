@@ -103,7 +103,7 @@ public class CommandeServiceImpl implements ICommandeService {
 			}
 			document.add(listeArticles);
 			
-			Paragraph total = new Paragraph(String.valueOf(montant)+" €", FontFactory.getFont(FontFactory.HELVETICA, 12));
+			Paragraph total = new Paragraph("Montant total de la commande: "+String.valueOf(montant)+" €", FontFactory.getFont(FontFactory.HELVETICA, 12));
 			total.setSpacingAfter(10);
 			document.add(total);
 			
