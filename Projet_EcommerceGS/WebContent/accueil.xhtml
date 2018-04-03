@@ -13,14 +13,15 @@
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="body">
 			<h:form>
+
 				<h:button value="Connexion Administrateur" outcome="login.xhtml"
 					style="height:40px; margin-left:500px" />
 
 
-
-				<h:graphicImage library="images" name="panier.jpg" value="Panier" 
-					url="panier.xhtml" style="height:50px; width:50px; margin-left:500px"  />
-                 
+				<h:commandLink action="panier.xhtml">
+					<h:graphicImage library="images" name="panier.jpg"
+						style="height:50px; width:50px; margin-left:500px" />
+				</h:commandLink>
 
 			</h:form>
 

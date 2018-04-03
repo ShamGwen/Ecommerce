@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -24,7 +23,7 @@ import fr.adaming.model.Panier;
 import fr.adaming.model.Produit;
 
 @ManagedBean(name="panierMB")
-@ApplicationScoped
+@javax.faces.bean.SessionScoped
 public class PanierMB implements Serializable{
 	@EJB
 	private IProduitService prodServ;
