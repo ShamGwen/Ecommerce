@@ -1,5 +1,7 @@
 package fr.adaming.Service;
 
+import java.util.Properties;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
@@ -14,19 +16,17 @@ public class ClientServiceImpl implements IClientService {
 	@Override
 	public Client recupererClientService(Client cl) {
 		// verifier si le client existe deja dans la BDD sinon en creer un nouveau
-		Client clOut = clientDao.isExist(cl);
-		if(clOut==null){
+		try {
+			Client clOut = clientDao.isExist(cl);
+			return clOut;
+		} catch (Exception e) {
 			return clientDao.ajouterClientDao(cl);
 		}
-		else{
-			return clOut;
-		}
+
+		
 		
 	}
 
-	
-	
-	
-	
+
 	
 }

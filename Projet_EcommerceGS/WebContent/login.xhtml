@@ -7,6 +7,7 @@ xmlns:p="http://primefaces.org/ui">
 <h:head>
 
 	<title>Page login</title>
+	<h:outputStylesheet library="css" name="monStyle.css" />
 </h:head>
 <h:body>
 	<h:form>
@@ -14,7 +15,7 @@ xmlns:p="http://primefaces.org/ui">
 		<p:panelGrid columns="2">
          	Mail: <h:inputText value="#{adMB.admin.mail}" />
 			Password: <h:inputText value="#{adMB.admin.mdp}" />
-			<h:commandButton value="Connexion" action="#{adMB.seConnecter}" />
+			<h:commandButton value="Connexion" action="#{adMB.seConnecter}" styleClass="boutons"/>
 
 		</p:panelGrid>
 	</h:form>

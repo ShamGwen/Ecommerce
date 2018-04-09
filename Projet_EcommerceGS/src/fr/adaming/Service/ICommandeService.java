@@ -16,7 +16,7 @@ public interface ICommandeService {
     public Commande addCommande(Commande com,Client cl);
 	public int deleteCommande(Commande com);
 
-	public void genererCommandePDF(Commande com, double montant);
+	public String genererCommandePDF(Commande com, double montant);
 	
 	
 	

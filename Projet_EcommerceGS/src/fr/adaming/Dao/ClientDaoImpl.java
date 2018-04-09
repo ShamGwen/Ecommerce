@@ -15,7 +15,7 @@ public class ClientDaoImpl implements IClientDao {
 	@Override
 	public Client isExist(Client cl) {
 		// la requete jpql
-		String req = "SELECT cl from Client as cl WHERE cl.nomClient=:pNom,cl.adresse=:pAdresse,cl.tel=:pTel,cl.email=:pEmail";
+		String req = "SELECT cl from Client as cl WHERE cl.nomClient=:pNom AND cl.adresse=:pAdresse AND cl.tel=:pTel AND cl.email=:pEmail";
 		// creer un objet de type Query pour envoyer la requete *
 		Query query = em.createQuery(req);
 
@@ -26,12 +26,15 @@ public class ClientDaoImpl implements IClientDao {
 		query.setParameter("pTel", cl.getTel());
 		// envoyer la requte et recup du resultat
 		return (Client) query.getSingleResult();
+		
+//		return em.find(Client.class, cl.getIdClient());
 
 	}
 
 	@Override
 	public Client ajouterClientDao(Client cl) {
 		em.persist(cl);
+		//em.refresh(cl);
 		return cl;
 	}
 }

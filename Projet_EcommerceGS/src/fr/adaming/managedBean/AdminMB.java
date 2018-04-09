@@ -68,7 +68,7 @@ public class AdminMB implements Serializable {
 			return "succes";
 		} catch (Exception ex) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("l'identifiant our le mdp n'exist pas"));
+					new FacesMessage("l'identifiant ou le mdp n'exist pas"));
 		}
 		return "echec";
 	}

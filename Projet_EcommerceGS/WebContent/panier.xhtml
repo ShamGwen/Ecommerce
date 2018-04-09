@@ -7,6 +7,7 @@
 <h:head>
 
 	<title>Page panier</title>
+	<h:outputStylesheet library="css" name="monStyle.css" />
 </h:head>
 <h:body>
 
@@ -30,15 +31,19 @@
 			</p:column>
 
 		</p:dataTable>
-		
-		Montant total: #{sessionScope.total}
+
+		<h1 align="right" style="color: #ff1a8c">Montant total:
+			#{sessionScope.total} €</h1>
 	</h:form>
 	<h:form>
-		<h:commandButton value="Annuler" action="#{panierMB.annulerPanier}" />
-		<h:commandButton value="Valider le panier" action="#{panierMB.validerPanier}"/>
-	</h:form>
-	<h:form>
-		<h:button value="Retour" outcome="accueil.xhtml" />
+		<h:panelGrid columns="2">
+			<h:commandButton value="Annuler" action="#{panierMB.annulerPanier}"
+				styleClass="boutons" />
+
+			<h:button value="Valider" outcome="client.xhtml" styleClass="boutons" />
+
+			<h:button value="Retour" outcome="accueil.xhtml" styleClass="boutons" />
+		</h:panelGrid>
 	</h:form>
 
 	<h:messages style="color:red" />

@@ -4,3 +4,21 @@
 	margin-top: -80px;
 }
 
+.imagesProduits{
+	height: 280px;
+	width: 280px;
+}
+
+.boutons{
+	background-color:#ffcce6;
+	border:solid;
+	border-color:#ff1a8c;
+	border-radius:8px;
+	height: 45px;
+	width: 120px;
+	font-size: 90%;
+}
+
+.divHead{
+	margin-bottom: 80px;
+}

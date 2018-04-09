@@ -46,17 +46,18 @@ public class CommandeServiceImpl implements ICommandeService {
 	}
 
 	@Override
-	public void genererCommandePDF(Commande com,double montant) {
+	public String genererCommandePDF(Commande com,double montant) {
 		//recuperer la liste des lignes de commande
 		List<LigneCommande> liste = com.getListeLC();
 		Document document = new Document(PageSize.A4, 75, 75, 75, 75);
+		String cheminPDF = "C:\\Users\\Public\\Commande_"+com.getIdCommande()+".pdf";
 		try {
 			
 			PdfWriter writer = PdfWriter.getInstance(document,
-					new FileOutputStream("C:\\Users\\Public\\Commande_"+com.getIdCommande()+".pdf"));
+					new FileOutputStream(cheminPDF));
 			document.open();
 			
-			Paragraph titre = new Paragraph("ShamsGwen Makeup", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Font.UNDERLINE, new CMYKColor(0,36,0,0)));
+			Paragraph titre = new Paragraph("ShamsGwen Makeup", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Font.UNDERLINE, new CMYKColor(0,100,0,0)));
 			titre.setSpacingAfter(20);
 			document.add(titre);
 			
@@ -106,11 +107,12 @@ public class CommandeServiceImpl implements ICommandeService {
 			Paragraph total = new Paragraph("Montant total de la commande: "+String.valueOf(montant)+" €", FontFactory.getFont(FontFactory.HELVETICA, 12));
 			total.setSpacingAfter(10);
 			document.add(total);
-			
+			return cheminPDF;
 			
 		} catch (FileNotFoundException | DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}finally {
 			document.close();
 		}

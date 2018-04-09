@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
-<title>Info Client</title>
+	<title>Info Client</title>
+	<h:outputStylesheet library="css" name="monStyle.css" />
 </h:head>
 <h:body>
-<h:form>
-		<h1>Veuillez entrer vos informations afin de finaliser la commande</h1>
+
+	<h1>Veuillez entrer vos informations afin de finaliser la commande</h1>
+	<h:form>
 		<h:panelGrid columns="2">
 		 Nom: <h:inputText value="#{clMB.client.nomClient}" />
 			Adresse: <h:inputText value="#{clMB.client.adresse}" />
 			E-Mail: <h:inputText value="#{clMB.client.email}" />
-				Tel: <h:inputText value="#{clMB.client.tel}" />
-			<h:commandButton value="Valider" action="#{clMB.seConnecter}"/>
-			
-			<h:commandButton value="Annuler" action="#{clMB.annulerIdentification}"/>
+				Téléphone: <h:inputText value="#{clMB.client.tel}" />
+			<h:commandButton value="Valider" action="#{clMB.seConnecter}" styleClass="boutons"/>
+
+			<h:commandButton value="Annuler"
+				action="#{clMB.annulerIdentification}" styleClass="boutons"/>
 		</h:panelGrid>
 	</h:form>
-	<h:messages style="color:red"/>
+	<h:messages style="color:red" />
 
 
 

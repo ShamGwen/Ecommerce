@@ -10,40 +10,37 @@
 	<h:outputStylesheet library="css" name="monStyle.css" />
 </h:head>
 <h:body>
-	<ui:composition template="/template/layout.xhtml">
-		<ui:define name="body">
+	<div style="margin-top: 90px">
+		<div style="float: left; margin-bottom: 200px;">
+			<h:graphicImage library="images" name="logos.png" styleClass="idLogo" />
+		</div>
+		<div style="float: right;">
 			<h:form>
+				<h:panelGrid columns="2" style="margin-top:-80px">
+					<h:commandLink action="panier.xhtml">
+						<h:graphicImage library="images" name="panier.jpg"
+							style="height:50px; width:50px; margin-left:500px" />
+					</h:commandLink>
+					<h:button value="Admin" outcome="login.xhtml"
+						style="height:40px; margin-left:500px" styleClass="boutons" />
 
-				<h:button value="Connexion Administrateur" outcome="login.xhtml"
-					style="height:40px; margin-left:500px" />
-
-
-				<h:commandLink action="panier.xhtml">
-					<h:graphicImage library="images" name="panier.jpg"
-						style="height:50px; width:50px; margin-left:500px" />
-				</h:commandLink>
-
+				</h:panelGrid>
 			</h:form>
-
-			<h:form>
-				Rechercher: <h:inputText label="mot-clé" value="#{prodMB.motCle}" />
-				<h:commandButton value="Rechercher"
-					action="#{prodMB.afficherListeProduitsSpecifiques}" />
-			</h:form>
-			<br />
+		</div>
+	</div>
+	<div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
+	<div>
+		<div>
 			<h:form>
 				<p:dataGrid var="cat" value="#{catMB.listeCat}" columns="3"
 					layout="grid" id="categ">
-
-					<f:facet name="header">
-            Categories
-        	</f:facet>
-
+					<f:facet name="header" style="text-align:center">Categories</f:facet>
 					<p:panel header="#{cat.nomCategorie}" style="text-align:center">
 						<h:panelGrid columns="1" style="width:100%">
 							<h:commandLink
 								action="#{prodMB.afficherListeProduitsSpecifiques}">
-								<h:graphicImage value="#{cat.image}" />
+								<h:graphicImage value="#{cat.image}"
+									style="height:166px;width:250px" />
 								<f:setPropertyActionListener value="#{cat}"
 									target="#{prodMB.categorie}" />
 							</h:commandLink>
@@ -54,8 +51,20 @@
 					</p:panel>
 				</p:dataGrid>
 			</h:form>
-		</ui:define>
-	</ui:composition>
+		</div>
+		<br />
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:graphicImage library="images" name="loupe.png" style="height:50px; width:50px;" />
+				
+				<h:inputText label="mot-clé" value="#{prodMB.motCle}" />
+				<h:commandButton value="Rechercher"
+					action="#{prodMB.rechercherMotCle}" styleClass="boutons" />
+			</h:panelGrid>
+		</h:form>
+		<br />
+	</div>
+
 
 
 

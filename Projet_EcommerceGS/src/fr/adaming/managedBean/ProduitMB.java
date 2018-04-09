@@ -176,7 +176,9 @@ public class ProduitMB implements Serializable {
 
 	public String rechercherMotCle() {
 		List<Produit> listeRech = prodService.getProduitsRechService(motCle);
-		this.listeProduits = listeRech;
+		//this.listeProduits = listeRech;
+		//ajouter la liste dans la session
+		maSession.setAttribute("rechListe", listeRech);
 
 		return "produitsRecherches.xhtml";
 

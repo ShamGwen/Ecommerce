@@ -7,6 +7,7 @@
 <h:head>
 
 	<title>Page supprimerCategorie</title>
+	<h:outputStylesheet library="css" name="monStyle.css" />
 </h:head>
 <h:body>
 	<h:form>
@@ -23,7 +24,7 @@
 		<h:panelGrid columns="2">
 			ID de la categorie à supprimer: <h:inputText
 				value="#{catMB.categorie.idCategorie}" />
-			<h:commandButton value="Supprimer" action="#{catMB.supprimerCategorie}" />
+			<h:commandButton value="Supprimer" action="#{catMB.supprimerCategorie}" styleClass="boutons"/>
 		</h:panelGrid>
 	</h:form>
 

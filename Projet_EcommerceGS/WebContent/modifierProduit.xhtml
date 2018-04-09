@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
-<title>Page accueil admin</title>
+	<title>Page modifierProduit</title>
+	<h:outputStylesheet library="css" name="monStyle.css" />
 </h:head>
 <h:body>
 
-<h:form>
+	<h:form>
 		<p:breadCrumb>
 			<p:menuitem value="AccueilAdmin" url="accueilAdmin.xhtml" />
 			<p:menuitem value="Categories" url="accueilCategorie.xhtml" />
@@ -23,7 +24,7 @@ xmlns:p="http://primefaces.org/ui">
 
 
 
-<h:form enctype="multipart/form-data">
+	<h:form enctype="multipart/form-data">
 
 		<h:panelGrid columns="2">
 			Designation du produit: <h:inputText
@@ -32,10 +33,11 @@ xmlns:p="http://primefaces.org/ui">
 			Id Produit: <h:inputText value="#{prodMB.produit.idProduit}" />
 			Prix: <h:inputText value="#{prodMB.produit.prix}" />
 			Quantite: <h:inputText value="#{prodMB.produit.quantite}" />
-			ID Categorie: <h:inputText value="#{prodMB.categorie.idCategorie}"/>
+			ID Categorie: <h:inputText value="#{prodMB.categorie.idCategorie}" />
 			
-			Image: <p:fileUpload value="#{prodMB.uf}" mode="simple" skinSimple="true"/>
-			<h:commandButton value="Modifier" action="#{prodMB.modifierProduit}" />
+			Image: <p:fileUpload value="#{prodMB.uf}" mode="simple"
+				skinSimple="true" />
+			<h:commandButton value="Modifier" action="#{prodMB.modifierProduit}" styleClass="boutons"/>
 		</h:panelGrid>
 	</h:form>
 

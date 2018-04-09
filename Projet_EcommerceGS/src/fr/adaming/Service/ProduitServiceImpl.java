@@ -92,7 +92,7 @@ public class ProduitServiceImpl implements IProduitService {
 		// initialisation d'une liste de recuperation des produits dont la description contient le mot cle
 		List<Produit> listeRech = new ArrayList<Produit>();
 		for(Produit p : listeProd) {
-			if (p.getDescription().contains(motCle)) {
+			if (p.getDescription().toLowerCase().contains(motCle.toLowerCase())) {
 				// si la description du produit contient le mot-cle on ajoute le produit dans la deuxieme liste
 				listeRech.add(p);
 			}

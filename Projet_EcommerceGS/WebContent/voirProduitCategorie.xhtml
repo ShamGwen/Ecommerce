@@ -7,6 +7,7 @@
 <h:head>
 
 	<title>Page voirProduitCategorie</title>
+	<h:outputStylesheet library="css" name="monStyle.css" />
 </h:head>
 <h:body>
 
@@ -23,7 +24,7 @@
 			<p:panel header="#{prod.designation}" style="text-align:center">
 				<h:panelGrid columns="1" style="width:100%">
 					<h:commandLink action="#{prodMB.afficherFicheProduit}">
-						<h:graphicImage value="#{prod.image}" />
+						<h:graphicImage value="#{prod.image}" styleClass="imagesProduits"/>
 						<f:setPropertyActionListener value="#{prod}"
 							target="#{prodMB.produit}" />
 					</h:commandLink>

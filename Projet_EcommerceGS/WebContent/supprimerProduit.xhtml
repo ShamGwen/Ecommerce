@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
-<title>Page accueil admin</title>
+	<title>Page supprimerProduit</title>
+	<h:outputStylesheet library="css" name="monStyle.css" />
 </h:head>
 <h:body>
 
 
 
-<h:form>
+	<h:form>
 
 		<h:panelGrid columns="2">
 			ID du produit à supprimer: <h:inputText
 				value="#{prodMB.produit.idProduit}" />
-			<h:commandButton value="Supprimer" action="#{prodMB.deleteProduit}" />
+			<h:commandButton value="Supprimer" action="#{prodMB.deleteProduit}" styleClass="boutons"/>
 		</h:panelGrid>
 	</h:form>
 

@@ -7,11 +7,30 @@
 <h:head>
 
 	<title>Page accueilCategorie</title>
+	<h:outputStylesheet library="css" name="monStyle.css" />
 </h:head>
 <h:body>
 	<h:form>
+		<p:breadCrumb>
+			<p:menuitem value="AccueilAdmin" url="accueilAdmin.xhtml" />
+			<p:menuitem value="Categories" url="accueilCategorie.xhtml" />
+			<p:menuitem value="Produits" url="accueilProduit.xhtml" />
+
+		</p:breadCrumb>
+	</h:form>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:button value="Ajouter" outcome="ajouterCategorie.xhtml"
+				styleClass="boutons" />
+			<h:button value="Modifier"
+				outcome="modifierCategorie.xhtml" styleClass="boutons" />
+			<h:button value="Supprimer"
+				outcome="supprimerCategorie.xhtml" styleClass="boutons" />
+		</h:panelGrid>
+	</h:form>
+	<h:form>
 		<p:dataTable var="cat" value="#{catMB.listeCat}">
-		<f:facet name="header">Liste des categories</f:facet>
+			<f:facet name="header">Liste des categories</f:facet>
 			<p:column headerText="Id">
 				<h:outputText value="#{cat.idCategorie}" />
 			</p:column>
@@ -25,19 +44,13 @@
 			</p:column>
 
 			<p:column headerText="Photo de categorie">
-				<h:graphicImage value="#{cat.image}" />
+				<h:graphicImage value="#{cat.image}" style="height:166px;width:250px"/>
 			</p:column>
 		</p:dataTable>
 	</h:form>
 
 
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:button value="Ajouter Categorie" outcome="ajouterCategorie.xhtml" />
-			<h:button value="Modifier Categorie" outcome="modifierCategorie.xhtml" />
-			<h:button value="Supprimer Categorie" outcome="supprimerCategorie.xhtml" />
-		</h:panelGrid>
-	</h:form>
+
 
 </h:body>
 </html>
